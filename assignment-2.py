@@ -4,84 +4,103 @@
 # Justin Clark
 # 1/15/2020
 
-# contants
-BLOCK_HEIGHT = 1.5 # meters
-BLOCK_WIDTH = 2 # meters
-BLOCK_LENGTH = 2.5 # meters
-BLOCK_WEIGHT = 15000 # kg
+
+class Pyramid:
+
+    # contants
+    BLOCK_HEIGHT = 1.5 # meters
+    BLOCK_WIDTH = 2 # meters
+    BLOCK_LENGTH = 2.5 # meters
+    BLOCK_WEIGHT = 15000 # kg
+
+    # __init__ is Python's constructor method
+    def __init__(self, pyramidSideLength, pyramidHeight):
+        self.pyramidSideLength = pyramidSideLength
+        self.pyramidHeight = pyramidHeight
+
+    # processing
+    def calculateBlockVolume(self, height, width, length):
+        return height * width * length
+
+    def calculateGroundArea(self, length):
+        return length ** 2
+
+    def calculatePyramidVolume(self, groundArea, height):
+        return round((groundArea / 3) * height)
+
+    def countBlocks(self, pyramidVolume, blockVolume):
+        return round(pyramidVolume / blockVolume)
+
+    def calculateMass(self, blocks, weight):
+        return blocks * weight
+
+    # this type of function might not be suitable for inside a class, but going with it for now
+    def createNewPyramid(self):
+        # create superscript for displaying exponents
+        superscript = str.maketrans("0123456789", "⁰¹²³⁴⁵⁶⁷⁸⁹")
+        displayMetersSquared = 'm2'.translate(superscript)
+        displayMetersCubed = 'm3'.translate(superscript)
+
+        # storing function output in variables for program readability
+        blockVolume = self.calculateBlockVolume(Pyramid.BLOCK_HEIGHT, Pyramid.BLOCK_WIDTH, Pyramid.BLOCK_LENGTH)
+        groundAreaCovered = self.calculateGroundArea(self.pyramidSideLength)
+        pyramidVolume = self.calculatePyramidVolume(groundAreaCovered, self.pyramidHeight)
+        countOfBlocks = self.countBlocks(pyramidVolume, blockVolume)
+        mass = self.calculateMass(countOfBlocks, Pyramid.BLOCK_WEIGHT)
+
+        # build nicely formatted answer for display
+        displayAnswer = '\n' + \
+            'ground area covered = {:,} {}'.format(groundAreaCovered, displayMetersSquared) + '\n' + \
+            'pyramid volume = {:,.0f} {}'.format(pyramidVolume, displayMetersCubed) + '\n' + \
+            'blocks = {:,}'.format(countOfBlocks) + '\n' + \
+            'mass = {:,} kg'.format(mass)
+
+        return displayAnswer
+
 
 # input
 pyramidSideLength = int(input('Input a side length for a pyramid: ')) # in meters
 pyramidHeight = int(input('Input a height for a pyramid: ')) # in meters
 
-# processing
-def calculateBlockVolume(height, width, length):
-    return height * width * length
-
-def calculateGroundArea(length):
-    return length ** 2
-
-def calculatePyramidVolume(groundArea, height):
-    return round((groundArea / 3) * height)
-
-def countBlocks(pyramidVolume, blockVolume):
-    return round(pyramidVolume / blockVolume)
-
-def calculateMass(blocks, weight):
-    return blocks * weight
-
-# storing function output in variables for program readability
-blockVolume = calculateBlockVolume(BLOCK_HEIGHT, BLOCK_WIDTH, BLOCK_LENGTH)
-groundAreaCovered = calculateGroundArea(pyramidSideLength)
-pyramidVolume = calculatePyramidVolume(groundAreaCovered, pyramidHeight)
-countOfBlocks = countBlocks(pyramidVolume, blockVolume)
-mass = calculateMass(countOfBlocks, BLOCK_WEIGHT)
-
-# create superscript for displaying exponents
-superscript = str.maketrans("0123456789", "⁰¹²³⁴⁵⁶⁷⁸⁹")
-displayMetersSquared = 'm2'.translate(superscript)
-displayMetersCubed = 'm3'.translate(superscript)
+# build instance of Pyramid
+pyramid_1 = Pyramid(pyramidSideLength, pyramidHeight)
+# display results of instance
+print(Pyramid.createNewPyramid(pyramid_1))
 
 
-displayAnswer = '\n' + \
-    'ground area covered = {:,} {}'.format(groundAreaCovered, displayMetersSquared) + '\n' + \
-    'pyramid volume = {:,.0f} {}'.format(pyramidVolume, displayMetersCubed) + '\n' + \
-    'blocks = {:,}'.format(countOfBlocks) + '\n' + \
-    'mass = {:,} kg'.format(mass)
-
-print(displayAnswer)
-
-# automated tests
+# automated tests (would normally be in separate file just for testing)
 print('\nrunning automated tests...')
+
 import unittest
+# would use "import Pyramid" here if in separate file
 
 class TestThisProgram(unittest.TestCase):
     
     def test_calculateBlockVolume(self):
         # only one test for block size (not supposed to change)
-        self.assertEqual(calculateBlockVolume(1.5, 2, 2.5), 7.5)
+        self.assertEqual(Pyramid.calculateBlockVolume(self, 1.5, 2, 2.5), 7.5)
 
     def test_calculateGroundArea(self):
-        self.assertEqual(calculateGroundArea(80), 6400)
-        self.assertEqual(calculateGroundArea(236), 55696)
+        self.assertEqual(Pyramid.calculateGroundArea(self, 80), 6400)
+        self.assertEqual(Pyramid.calculateGroundArea(self, 236), 55696)
 
     def test_calculatePyramidVolume(self):
-        self.assertEqual(calculatePyramidVolume(6400, 64), 136533)
-        self.assertEqual(calculatePyramidVolume(55696, 138), 2562016)
+        self.assertEqual(Pyramid.calculatePyramidVolume(self, 6400, 64), 136533)
+        self.assertEqual(Pyramid.calculatePyramidVolume(self, 55696, 138), 2562016)
         
     def test_countBlocks(self):
-        self.assertEqual(countBlocks(136533, 7.5), 18204)
-        self.assertEqual(countBlocks(2562016, 7.5), 341602)
+        self.assertEqual(Pyramid.countBlocks(self, 136533, 7.5), 18204)
+        self.assertEqual(Pyramid.countBlocks(self, 2562016, 7.5), 341602)
 
     def test_calculateMass(self):
-        self.assertEqual(calculateMass(18204, 15000), 273060000)
-        self.assertEqual(calculateMass(341602, 15000), 5124030000)
+        self.assertEqual(Pyramid.calculateMass(self, 18204, 15000), 273060000)
+        self.assertEqual(Pyramid.calculateMass(self, 341602, 15000), 5124030000)
 
 if __name__ == '__main__':
     unittest.main()
 
-# ===================================
-# manual tests:
+# ===========================================
+# Visual of correct output for 2 test cases:
 # ===================================
 # input data: 
 #   pyramid side length = 80 meters; 
@@ -94,12 +113,12 @@ if __name__ == '__main__':
 #   mass = 273,060,000 kg
 # ===================================
 # input data: 
-#   pyramid side length = 80 meters; 
-#   pyramid height = 64 meters
+#   pyramid side length = 236 meters; 
+#   pyramid height = 138 meters
 # ========
 # results:
 #   ground area covered = 55,696 m²
 #   pyramid volume = 2,562,016 m³
 #   blocks = 341,602
 #   mass = 5,124,030,000 kg
-# ===================================
+# ===========================================
