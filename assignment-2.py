@@ -59,8 +59,8 @@ class Pyramid:
 
 
 # input
-pyramidSideLength = int(input('Input a side length for a pyramid: ')) # in meters
-pyramidHeight = int(input('Input a height for a pyramid: ')) # in meters
+pyramidSideLength = int(input('Input a side length (in meters) for a pyramid: '))
+pyramidHeight = int(input('Input a height (in meters) for a pyramid: '))
 
 # build instance of Pyramid
 pyramid_1 = Pyramid(pyramidSideLength, pyramidHeight)
@@ -74,7 +74,8 @@ print('\nrunning automated tests...')
 import unittest
 # would use "import Pyramid" here if in separate file
 
-class TestThisProgram(unittest.TestCase):
+class TestPyramid(unittest.TestCase):
+    # "self" is not normally required in: ClassName.methodCall(self), but needed because class is in same file as unit test
     
     def test_calculateBlockVolume(self):
         # only one test for block size (not supposed to change)
@@ -96,11 +97,14 @@ class TestThisProgram(unittest.TestCase):
         self.assertEqual(Pyramid.calculateMass(self, 18204, 15000), 273060000)
         self.assertEqual(Pyramid.calculateMass(self, 341602, 15000), 5124030000)
 
+# Runs the unit tests automatically in the current file
 if __name__ == '__main__':
     unittest.main()
 
 # ===========================================
 # Visual of correct output for 2 test cases:
+# results agree with automated unit testing
+# and hand calculations (in MS Excel).
 # ===================================
 # input data: 
 #   pyramid side length = 80 meters; 
