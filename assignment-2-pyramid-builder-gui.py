@@ -15,7 +15,7 @@ class GridLines:
 
     def __vertical_lines__(self):
         for i in range(0, self.canvas_height, self.grid_space):
-            self.canvas.create_line(i, 0, i, self.canvas_height, fill='hotpink')
+            self.canvas.create_line(i, 0, i, self.canvas_height, fill='pink')
 
     def __horizontal_lines__(self):
         for i in range(0, self.canvas_width, self.grid_space):
@@ -78,43 +78,23 @@ def createPyramid(width, height):
     GridLines.create_grid(grid)
 
     points = [[100,300],[300,300], [200, 100]]
-    canvas.create_polygon(points, outline='black', fill='snow3', width=1)
+    canvas.create_polygon(points, outline='black', fill='')
 
 
-    canvas.create_line(200, 200, 100, 300, fill='purple')
-    canvas.create_line(200, 200, 200, 300, fill='blue')
-    canvas.create_line(200, 300, 200, 100, fill='orange')
+    points2 = [[100,300],[200,100],[160,220]]
+    canvas.create_polygon(points2, outline='black', fill='gray')
 
-    canvas.create_line(300, 200, 200, 100, fill='green')
-    canvas.create_line(300, 200, 200, 200, fill='green')
-    
-    canvas.create_line(150, 200, 200, 100, fill='red')
+    # canvas.create_line(200, 100, 160, 220, fill='magenta') # back-left
+    # canvas.create_line(160, 220, 100, 300, fill='magenta') # left-connector
 
-    canvas.create_line(300, 200, 300, 300, fill='magenta')
+    canvas.create_line(200, 100, 160, 220, fill='magenta') # back-left
+    canvas.create_line(320, 220, 160, 220, fill='blue') # back-middle
+    canvas.create_line(320, 220, 200, 100, fill='green') # back-right
 
+    canvas.create_line(160, 220, 100, 300, fill='magenta') # left-connector
+    canvas.create_line(320, 220, 300, 300, fill='blue') # right-connector
 
-    # oval − Creates a circle or an ellipse at the given coordinates. 
-    # It takes two pairs of coordinates; 
-    # the top left and bottom right corners 
-    # of the bounding rectangle for the oval.
-    # canvas.create_oval([200-(25/2),100-25], [225-(25/2), 125-25], fill='yellow', outline='yellow')
-
-
-    hypotenuse = math.sqrt(height**2+((width/2)**2))
-
-    print(str(hypotenuse))
-
-    """
-        a=5^2   b=3^2
-        Getting slant
-        a^2 + b^2 = c^2
-        5^2 + 3^2 = c^2
-        25  + 9   = 34^
-                c = sqrt(34)
-
-        Getting surface area of each side
-        A = 1/2 b(x) * h(x)
-    """
+    canvas.create_oval([200-(50/2),100-50], [225-(50/2), 125-50]) # sun
 
 # ===========================
 clickFunction() # REMOVE
@@ -122,4 +102,3 @@ clickFunction() # REMOVE
 
 root.mainloop()
 # https://www.youtube.com/watch?v=YXPyB4XeYLA  minute 25?
-
