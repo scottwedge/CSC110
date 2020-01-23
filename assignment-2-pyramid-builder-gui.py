@@ -80,25 +80,24 @@ def createPyramid(width, height):
     points = [[100,300],[300,300], [200, 100]]
     canvas.create_polygon(points, outline='black', fill='')
 
-
     points2 = [[100,300],[200,100],[160,220]]
-    canvas.create_polygon(points2, outline='black', fill='gray')
+    canvas.create_polygon(points2, outline='black', fill='')
 
-    # canvas.create_line(200, 100, 160, 220, fill='magenta') # back-left
-    # canvas.create_line(160, 220, 100, 300, fill='magenta') # left-connector
+    points3 = [[200,100],[320,220],[300,300]]
+    canvas.create_polygon(points3, outline='black', fill='gray')
+
 
     canvas.create_line(200, 100, 160, 220, fill='magenta') # back-left
-    canvas.create_line(320, 220, 160, 220, fill='blue') # back-middle
-    canvas.create_line(320, 220, 200, 100, fill='green') # back-right
+    canvas.create_line(320, 220, 160, 220, fill='magenta') # back-middle
+    canvas.create_line(320, 220, 200, 100, fill='magenta') # back-right
 
-    canvas.create_line(160, 220, 100, 300, fill='magenta') # left-connector
+    canvas.create_line(160, 220, 100, 300, fill='blue') # left-connector
     canvas.create_line(320, 220, 300, 300, fill='blue') # right-connector
 
     canvas.create_oval([200-(50/2),100-50], [225-(50/2), 125-50]) # sun
 
-# ===========================
-clickFunction() # REMOVE
-# ===============================
+#==================================
+clickFunction() # REMOVE WHEN DONE
+#==================================
 
 root.mainloop()
-# https://www.youtube.com/watch?v=YXPyB4XeYLA  minute 25?
