@@ -31,8 +31,8 @@ def clickFunction():
     responseText = 'Width entered: {}'.format(pyramid_base) + '\n' + \
         'Height entered: {}'.format(pyramid_height)
 
-    responseLabel = Label(root, text=responseText)
-    responseLabel.grid(row=3, column=0)
+    # responseLabel = Label(root, text=responseText)
+    # responseLabel.grid(row=4, column=0, columnspan=2, sticky=E)
 
     createPyramid(pyramid_base, pyramid_height)
 
@@ -41,7 +41,7 @@ def createPyramid(pyramid_base, pyramid_height):
     canvas_height = 400
 
     canvas = Canvas(root, width=canvas_width, height=canvas_height)
-    canvas.grid(row=5)
+    canvas.grid(row=5, column=0, columnspan=2, sticky=E)
     canvas.configure(background='white')
 
     grid = GridLines(canvas, canvas_width, canvas_height, 20)
@@ -85,32 +85,33 @@ root = Tk()
 root.title('Pyramid Dimensions')
 root.geometry("500x600+1100+200")
 
+header = Label(root, text='Pyramid Builder', font='Helvetica 18 bold')
+header.grid(row=0, column=0, columnspan=2, pady='10')
 
-
+# width entry
 widthLabel = Label(root, text="Enter Width:")
-widthLabel.grid(row=0, column=0)
-
+widthLabel.grid(row=1, column=0, ipadx='30', sticky=W)
 widthText = Entry(root)
-widthText.grid(row=0, column=1)
+widthText.grid(row=1, column=1, ipadx="100")
+widthText.focus()
 
-
-
+# height entry
 heightLabel = Label(root, text="Enter Height:")
-heightLabel.grid(row=1, column=0)
-
+heightLabel.grid(row=2, column=0, ipadx='30', sticky=W)
 heightText = Entry(root)
-heightText.grid(row=1, column=1)
+heightText.grid(row=2, column=1, ipadx="100")
 
+# buttons
+buttonFrame = Frame(root)
+buttonFrame.grid(row=3, column=1, sticky=E)
 
+submitButton = Button(buttonFrame, text="Submit", command=clickFunction)
+closeButton = Button(buttonFrame, text='Close', command=root.destroy)
 
-submitButton = Button(root, text="Submit", command=clickFunction)
-submitButton.grid(row=2, column=0)
+submitButton.pack(side='left', padx='2')
+closeButton.pack(side='left', padx='2')
 
-closeButton = Button(master=root, text='Close', command=root.destroy)
-closeButton.grid(row=2, column=1)
-
-#==================================
-# clickFunction() # REMOVE WHEN DONE
-#==================================
+# root.grid_columnconfigure(0, minsize=80)
+# root.grid_rowconfigure(0, pad=5)
 
 root.mainloop()
