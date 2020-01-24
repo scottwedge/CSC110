@@ -91,7 +91,7 @@ def createPyramid(pyramid_base, pyramid_height):
     # y-coords
     y_top = pyramid_height #y_top = 100
     y_middle = 220
-    y_bottom = pyramid_base #y_bottom = 300
+    y_bottom = pyramid_base+20 #y_bottom = 300
 
     # x-coords
     x_center = 200
@@ -139,6 +139,7 @@ def clickFunction():
     
 root = Tk()
 
+root.iconbitmap('pyramid.ico')
 root.title('Pyramid Dimensions')
 root.geometry("600x700+1100+200")
 
