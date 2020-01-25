@@ -76,7 +76,7 @@ class GridLines:
         self.__vertical_lines__()
         self.__horizontal_lines__()
 
-def createPyramid(pyramid_base, pyramid_height):
+def createPyramid(apex, base, height):
 
     canvas_width = 400
     canvas_height = 400
@@ -87,42 +87,41 @@ def createPyramid(pyramid_base, pyramid_height):
 
     grid = GridLines(canvas, canvas_width, canvas_height, 20)
     GridLines.create_grid(grid)
+    
+    x_center = apex[0]
+    y_top = apex[1]
 
-    # y-coords
-    y_top = pyramid_height #y_top = 100
-    y_middle = 220
-    y_bottom = pyramid_base+20 #y_bottom = 300
+    y_bottom = y_top + height
+    y_middle = y_top + height / 1.6
 
-    # x-coords
-    x_center = 200
-    x_front_left = 100
-    x_back_left = 160
-    x_back_right = 320
-    x_front_right = 300
+    half_base = base / 2
+    x_left = (x_center - (half_base))
+    x_right = x_center + (half_base)
+    
+    right_offset = ((base * .6) - base)
+    x_right_rear = x_right + right_offset
 
-    # front triangle
-    points = [[x_front_left,y_bottom], [x_front_right,y_bottom], [x_center, y_top]]
-    canvas.create_polygon(points, outline='black', fill='')
+    left_offset = ((base * 1.1) - half_base)
+    x_left_rear = x_center - left_offset
+    
+    # facing triangle
+    points = [[x_left,y_bottom], [x_right,y_bottom], apex]
+    canvas.create_polygon(points, outline='black', fill='Gray95')
 
-    # left side triangle
-    points2 = [[x_front_left,y_bottom], [x_center,y_top], [x_back_left,y_middle]]
-    canvas.create_polygon(points2, outline='black', fill='')
-
-    # right side triangle
-    points3 = [[x_center,y_top], [x_back_right,y_middle], [x_front_right,y_bottom]]
-    canvas.create_polygon(points3, outline='black', fill='gray90')
+    # left side shadow
+    points3 = [apex, [x_left_rear,y_middle], [x_left,y_bottom]]
+    canvas.create_polygon(points3, outline='black', fill='Gray85')
 
     # triangle lines
-    canvas.create_line(x_center, y_top, x_back_left, y_middle, fill='magenta') # back-left
-    canvas.create_line(x_back_right, y_middle, x_back_left, y_middle, fill='magenta') # back-middle
-    canvas.create_line(x_back_right, y_middle, x_center, y_top, fill='magenta') # back-right
-    canvas.create_line(x_back_left, y_middle, x_front_left, y_bottom, fill='blue') # left-connector
-    canvas.create_line(x_back_right, y_middle, x_front_right, y_bottom, fill='blue') # right-connector
-
-    # canvas.create_oval([x_center-30,y_top-60], [x_center+30,y_top], fill='LightYellow') # sun
+    canvas.create_line(x_center, y_top, x_right_rear, y_middle, fill='thistle3', dash=(4,4)) # back right
+    canvas.create_line(x_right_rear, y_middle, x_left_rear, y_middle, fill='CadetBlue3', dash=(4,4)) # back middle
+    canvas.create_line(x_right_rear, y_middle, x_left, y_bottom, fill='PaleGreen3', dash=(4,4)) # cross positive
+    canvas.create_line(x_left_rear, y_middle, x_right, y_bottom, fill='PaleGreen3', dash=(4,4)) # cross negative
+    canvas.create_line(x_right_rear, y_middle, x_right, y_bottom, fill='CadetBlue3', dash=(4,4)) # right connector
 
 def clickFunction():
 
+    apex = [200,100]
     pyramid_base = int(widthText.get())
     pyramid_height = int(heightText.get())
     
@@ -135,15 +134,17 @@ def clickFunction():
     responseLabel.grid(row=4, column=0, columnspan=2, ipadx='110', sticky=W)
 
     # outputs 3D graphic of pyramid (not to scale)
-    createPyramid(pyramid_base, pyramid_height)
+    createPyramid(apex, pyramid_base, pyramid_height)
     
 root = Tk()
 
+APP_NAME = 'Pyramid Builder'
+
 root.iconbitmap('pyramid.ico')
-root.title('Pyramid Dimensions')
+root.title(APP_NAME)
 root.geometry("600x700+1100+200")
 
-header = Label(root, text='Pyramid Builder', font='Helvetica 18 bold')
+header = Label(root, text=APP_NAME, font='Helvetica 18 bold')
 header.grid(row=0, column=0, columnspan=2, pady='10')
 
 # width entry
