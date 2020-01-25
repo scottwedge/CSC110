@@ -1,192 +1,104 @@
 from tkinter import *
 import math
 
-class GridLines:
-    
-    def __init__(self, canvas, canvas_width, canvas_height, grid_space):
-        self.canvas = canvas
-        self.canvas_width = canvas_width
-        self.canvas_height = canvas_height
-        self.grid_space = grid_space
-
-    def __vertical_lines__(self):
-        for i in range(0, self.canvas_width, self.grid_space):
-            self.canvas.create_line(i, 0, i, self.canvas_height, fill='thistle1')
-
-    def __horizontal_lines__(self):
-        for i in range(0, self.canvas_height, self.grid_space):
-            self.canvas.create_line(0, i, self.canvas_width, i, fill='CadetBlue1')
-
-    def create_grid(self):
-        self.__vertical_lines__()
-        self.__horizontal_lines__()
-
-# def createPyramid(pyramid_center, pyramid_base, pyramid_height):
-#     """creates 3d graphic of pyramid.
-#         takes base and height of pyramid as arguments"""
-
-#     # x-coords
-#     x_center = pyramid_center
-#     x_front_left = x_center / 2
-#     x_back_left = x_center / 1.25
-#     x_back_right = x_center * 1.6               #right_offset = ((base * 1.1) - base)
-
-#     x_front_right = 200 * 1.5
-
-#     # y-coords
-#     y_top = pyramid_height #y_top = 100
-#     y_middle = x_center * 1.1                   # height * .6
-#     y_bottom = pyramid_base #y_bottom = 300
-
-#     # front triangle
-#     points = [[x_front_left,y_bottom], [x_front_right,y_bottom], [x_center, y_top]]
-#     canvas.create_polygon(points, outline='black', fill='')
-
-#     # right side triangle
-#     points3 = [[x_center,y_top], [x_back_right,y_middle], [x_front_right,y_bottom]]
-#     canvas.create_polygon(points3, outline='black', fill='gray90')
-
-#     # triangle lines
-#     canvas.create_line(x_center, y_top, x_back_left, y_middle, fill='magenta', dash=(4,4)) # back-left
-#     canvas.create_line(x_back_right, y_middle, x_back_left, y_middle, fill='magenta', dash=(4,4)) # back-middle
-#     canvas.create_line(x_back_left, y_middle, x_front_left, y_bottom, fill='blue', dash=(4,4)) # left-connector
-#     canvas.create_line(x_back_right, y_middle, x_front_right, y_bottom, fill='blue') # right-connector
-
 def createSky():
-    canvas.create_rectangle(0,0,430,220,fill='SkyBlue2')
+    canvas.create_rectangle(0,0,440,220,fill='SkyBlue2')
+
+def createCelestialObject(xCoord, yCoord, diameter, color, border):
+    canvas.create_oval(xCoord, yCoord, xCoord+diameter, yCoord+diameter, fill=color, outline=border)
+
+def createCloud(xCoord, yCoord, diameter, shade):
+    canvas.create_oval(xCoord, yCoord, xCoord+diameter, yCoord+diameter, fill=shade, outline='')
+    canvas.create_oval(xCoord, yCoord+.5, xCoord+diameter, yCoord+diameter, fill=shade, outline='black')
+    canvas.create_oval(xCoord, yCoord+2, xCoord+diameter, yCoord+diameter, fill=shade, outline='')
+
+def createClouds(coords, shade):
+
+    xCoord = coords[0]
+    yCoord = coords[1]
+
+    createCloud(xCoord+0,yCoord+20,80,shade)
+    createCloud(xCoord+120,yCoord+40,80,shade)
+    createCloud(xCoord+40,yCoord+0,120,shade)
+    createCloud(xCoord+180,yCoord+60,40,shade)
+
+    canvas.create_rectangle(xCoord+5,yCoord+80, xCoord+220,yCoord+120,fill='SkyBlue2')
+    canvas.create_rectangle(xCoord+5,yCoord+80+.5, xCoord+220+1,yCoord+120+1,fill='SkyBlue2',outline='')
 
 def createGround():
-    canvas.create_rectangle(0,220,430,300,fill='LightGoldenrod2')
+    canvas.create_rectangle(0,205,440,310,fill='goldenrod1')
 
-def createTriangle(apex, base, height):
+def createPyramid(apex, base, height, facing_side, left_side):
 
     x_center = apex[0]
     y_top = apex[1]
 
     y_bottom = y_top + height
-    y_middle = y_top + height / 1.6
+    y_middle = y_top + height / 1.02
 
     half_base = base / 2
-    x_left = x_center - (half_base)
+    x_left = (x_center - (half_base))
     x_right = x_center + (half_base)
     
-    right_offset = ((base * .6) - base)
-    x_right_rear = x_right + right_offset
-
     left_offset = ((base * 1.1) - half_base)
     x_left_rear = x_center - left_offset
     
     # facing triangle
-    points = [[x_left,y_bottom], [x_right,y_bottom], apex]
-    canvas.create_polygon(points, outline='black', fill='DarkGoldenrod1')
+    points = [[x_left,y_bottom+4], [x_right,y_bottom], apex]
+    canvas.create_polygon(points, outline='black', fill=facing_side)
 
     # left side shadow
-    points3 = [apex, [x_left_rear,y_middle], [x_left,y_bottom]]
-    canvas.create_polygon(points3, outline='black', fill='DarkGoldenrod4')
+    points3 = [apex, [x_left_rear,y_middle], [x_left,y_bottom+4]]
+    canvas.create_polygon(points3, outline='black', fill=left_side)
 
-    # ================================================================================================================
-    # MOVE TO A NEW SHOW/HIDE FUNCTION
-    # # triangle lines
-    # canvas.create_line(x_center, y_top, x_left_rear, y_middle, fill='thistle3', dash=(4,4)) # back-left
-    # canvas.create_line(x_right_rear, y_middle, x_left_rear, y_middle, fill='CadetBlue3', dash=(4,4)) # back-middle
-    # canvas.create_line(x_right_rear, y_middle, x_left, y_bottom, fill='PaleGreen3', dash=(4,4)) # cross positive
-    # canvas.create_line(x_left_rear, y_middle, x_left, y_bottom, fill='CadetBlue3', dash=(4,4)) # left connector
-    # canvas.create_line(x_left_rear, y_middle, x_right, y_bottom, fill='PaleGreen3', dash=(4,4)) # cross negative
-
-def clickFunction():
+def buildScene():
 
     createSky()
-
-    createTriangle([360,120], 150, 100)
-    createTriangle([245,55], 280, 165)
-    createTriangle([130,60], 240, 160)
     
+    createCelestialObject(-12, -12, 35, 'yellow2', 'black') # sun
+    createCelestialObject(380, 110, 15, 'white', 'black') # moon
+    createCelestialObject(384, 110, 15, 'SkyBlue2', 'black') # moon crescent outline
+    createCelestialObject(385, 110, 15, 'SkyBlue2', '') # moon crescent shadow
+
+    createClouds([10,20], 'white')
+
     createGround()
+
+    createPyramid([360,120], 150, 100, 'goldenrod3', 'goldenrod1') # Great Pyramid of Khufu (right, [farthest])
+    createPyramid([245,45], 280, 175+10, 'DarkGoldenrod2', 'goldenrod1') # Pyramid of Khafre (center)
+    createPyramid([130,60], 260, 160+20, 'goldenrod2', 'goldenrod1') # Pyramid of Menkaure (left)
+
+    createPyramid([205,140+5],120,80+20, 'goldenrod2', 'goldenrod1') # sm middle
+    createPyramid([80,160+10],100,60+20, 'goldenrod2', 'goldenrod1') # sm left
+
     
 
-    # pyramid_base = int(widthText.get())
-    # pyramid_height = int(heightText.get())
-
-    # pyramid_center = 200
-    # pyramid_base = 300
-    # pyramid_height = 100
-
-    # outputs 3D graphic of pyramid (not to scale)
-    # createPyramid(pyramid_center, pyramid_base, pyramid_height)
-
-
+# initialize tkinter
 root = Tk()
 
+# program constants
 APP_NAME = 'Pyramids of Giza'
 
+# create app window
 root.iconbitmap('pyramid.ico')
 root.title(APP_NAME)
-root.geometry("600x700+1100+200")
+root.geometry("600x500+1250+100")
 
-# =========================================
-
-canvas_width = 430
-canvas_height = 300
-
-canvas = Canvas(root, width=canvas_width, height=canvas_height)
-canvas.grid(row=4, column=0, columnspan=2, sticky=E)
-canvas.configure(background='white')
-
-grid = GridLines(canvas, canvas_width, canvas_height, 10)
-GridLines.create_grid(grid)
-
-# =========================================
-
-
-# from PIL import ImageTk, Image
-# import os
-# img = ImageTk.PhotoImage(Image.open("pyramid.png"))
-# panel = Label(root, image = img)
-# panel.pack(side = "bottom", fill = "both", expand = "yes")
-
-# image_frame = Frame(root)
-# image_frame.grid(row=0, column=0, sticky=W)
-
-# image create photo imgobj -file "pyramid.png" -width 400 -height 400 
-# pack [label .myLabel].myLabel configure -image imgobj 
-
-
-
-
-
-# widthLabel = Label(root, image='pyramid.png')
-# widthLabel.grid(row=0, column=0, ipadx='30', sticky=W)
-
+# create scene header
 header = Label(root, text=APP_NAME, font='Helvetica 18 bold')
-header.grid(row=0, column=1, columnspan=2, pady='10')
 
-# width entry
-widthLabel = Label(root, text="Enter Base (in meters):")
-widthLabel.grid(row=1, column=0, ipadx='30', sticky=W)
-widthText = Entry(root)
-widthText.grid(row=1, column=1, ipadx="100")
-widthText.focus()
+# center the header
+header.grid(row=0, column=0, sticky="EW", pady=60)
+root.grid_columnconfigure(0, weight=1)
 
-# height entry
-heightLabel = Label(root, text="Enter Height (in meters):")
-heightLabel.grid(row=2, column=0, ipadx='30', sticky=W)
-heightText = Entry(root)
-heightText.grid(row=2, column=1, ipadx="100")
+# create canvas
+canvas = Canvas(root, width=430, height=300)
 
-# buttons
-buttonFrame = Frame(root)
-buttonFrame.grid(row=3, column=1, sticky=E)
+# center the canvas
+canvas.place(relx=0.5, rely=0.5, anchor=CENTER)
 
-submitButton = Button(buttonFrame, text="Submit", command=clickFunction)
-closeButton = Button(buttonFrame, text='Close', command=root.destroy)
+# build scene
+buildScene()
 
-submitButton.pack(side='left', padx='2')
-closeButton.pack(side='left', padx='2')
-
-
-
-# =========================================
-clickFunction()
-# =========================================
-
+# infnite loop breaks only by interrupt 
 root.mainloop()
