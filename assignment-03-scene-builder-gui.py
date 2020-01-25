@@ -63,19 +63,20 @@ def createTriangle(apex, base, height):
     half_base = base / 2
     x_left = x_center - (half_base)
     x_right = x_center + (half_base)
-
-    right_offset = ((base * 1.1) - base)
+    
+    right_offset = ((base * .6) - base)
     x_right_rear = x_right + right_offset
 
-    left_offset = ((base * .6) - half_base)
+    left_offset = ((base * 1.1) - half_base)
     x_left_rear = x_center - left_offset
     
+
     # facing triangle
     points = [[x_left,y_bottom], [x_right,y_bottom], apex]
     canvas.create_polygon(points, outline='black', fill='gray95')
 
-    # right side shadow
-    points3 = [apex, [x_right_rear,y_middle], [x_right,y_bottom]]
+    # left side shadow
+    points3 = [apex, [x_left_rear,y_middle], [x_left,y_bottom]]
     canvas.create_polygon(points3, outline='black', fill='gray80')
 
     # triangle lines
@@ -104,8 +105,10 @@ def clickFunction():
 
 root = Tk()
 
+APP_NAME = 'Pyramid Builder'
+
 root.iconbitmap('pyramid.ico')
-root.title('Pyramid Sce')
+root.title(APP_NAME)
 root.geometry("600x700+1100+200")
 
 # =========================================
@@ -142,7 +145,7 @@ GridLines.create_grid(grid)
 # widthLabel = Label(root, image='pyramid.png')
 # widthLabel.grid(row=0, column=0, ipadx='30', sticky=W)
 
-header = Label(root, text='Pyramid Scene Builder', font='Helvetica 18 bold')
+header = Label(root, text=APP_NAME, font='Helvetica 18 bold')
 header.grid(row=0, column=1, columnspan=2, pady='10')
 
 # width entry
