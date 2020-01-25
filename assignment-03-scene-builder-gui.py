@@ -10,11 +10,11 @@ class GridLines:
         self.grid_space = grid_space
 
     def __vertical_lines__(self):
-        for i in range(0, self.canvas_height, self.grid_space):
+        for i in range(0, self.canvas_width, self.grid_space):
             self.canvas.create_line(i, 0, i, self.canvas_height, fill='thistle1')
 
     def __horizontal_lines__(self):
-        for i in range(0, self.canvas_width, self.grid_space):
+        for i in range(0, self.canvas_height, self.grid_space):
             self.canvas.create_line(0, i, self.canvas_width, i, fill='CadetBlue1')
 
     def create_grid(self):
@@ -52,6 +52,12 @@ class GridLines:
 #     canvas.create_line(x_back_left, y_middle, x_front_left, y_bottom, fill='blue', dash=(4,4)) # left-connector
 #     canvas.create_line(x_back_right, y_middle, x_front_right, y_bottom, fill='blue') # right-connector
 
+def createSky():
+    canvas.create_rectangle(0,0,430,220,fill='SkyBlue2')
+
+def createGround():
+    canvas.create_rectangle(0,220,430,300,fill='LightGoldenrod2')
+
 def createTriangle(apex, base, height):
 
     x_center = apex[0]
@@ -70,27 +76,33 @@ def createTriangle(apex, base, height):
     left_offset = ((base * 1.1) - half_base)
     x_left_rear = x_center - left_offset
     
-
     # facing triangle
     points = [[x_left,y_bottom], [x_right,y_bottom], apex]
-    canvas.create_polygon(points, outline='black', fill='gray95')
+    canvas.create_polygon(points, outline='black', fill='DarkGoldenrod1')
 
     # left side shadow
     points3 = [apex, [x_left_rear,y_middle], [x_left,y_bottom]]
-    canvas.create_polygon(points3, outline='black', fill='gray80')
+    canvas.create_polygon(points3, outline='black', fill='DarkGoldenrod4')
 
-    # triangle lines
-    canvas.create_line(x_center, y_top, x_left_rear, y_middle, fill='thistle3', dash=(4,4)) # back-left
-    canvas.create_line(x_right_rear, y_middle, x_left_rear, y_middle, fill='CadetBlue3', dash=(4,4)) # back-middle
-    canvas.create_line(x_right_rear, y_middle, x_left, y_bottom, fill='PaleGreen3', dash=(4,4)) # cross positive
-    canvas.create_line(x_left_rear, y_middle, x_left, y_bottom, fill='CadetBlue3', dash=(4,4)) # left connector
-    canvas.create_line(x_left_rear, y_middle, x_right, y_bottom, fill='PaleGreen3', dash=(4,4)) # cross negative
+    # ================================================================================================================
+    # MOVE TO A NEW SHOW/HIDE FUNCTION
+    # # triangle lines
+    # canvas.create_line(x_center, y_top, x_left_rear, y_middle, fill='thistle3', dash=(4,4)) # back-left
+    # canvas.create_line(x_right_rear, y_middle, x_left_rear, y_middle, fill='CadetBlue3', dash=(4,4)) # back-middle
+    # canvas.create_line(x_right_rear, y_middle, x_left, y_bottom, fill='PaleGreen3', dash=(4,4)) # cross positive
+    # canvas.create_line(x_left_rear, y_middle, x_left, y_bottom, fill='CadetBlue3', dash=(4,4)) # left connector
+    # canvas.create_line(x_left_rear, y_middle, x_right, y_bottom, fill='PaleGreen3', dash=(4,4)) # cross negative
 
 def clickFunction():
 
-    createTriangle([100,100], 200, 120)
-    createTriangle([200,200], 100, 120)
-    createTriangle([300,300], 100, 120)
+    createSky()
+
+    createTriangle([360,120], 150, 100)
+    createTriangle([245,55], 280, 165)
+    createTriangle([130,60], 240, 160)
+    
+    createGround()
+    
 
     # pyramid_base = int(widthText.get())
     # pyramid_height = int(heightText.get())
@@ -105,7 +117,7 @@ def clickFunction():
 
 root = Tk()
 
-APP_NAME = 'Pyramid Builder'
+APP_NAME = 'Pyramids of Giza'
 
 root.iconbitmap('pyramid.ico')
 root.title(APP_NAME)
@@ -113,14 +125,14 @@ root.geometry("600x700+1100+200")
 
 # =========================================
 
-canvas_width = 400
-canvas_height = 400
+canvas_width = 430
+canvas_height = 300
 
 canvas = Canvas(root, width=canvas_width, height=canvas_height)
 canvas.grid(row=4, column=0, columnspan=2, sticky=E)
 canvas.configure(background='white')
 
-grid = GridLines(canvas, canvas_width, canvas_height, 20)
+grid = GridLines(canvas, canvas_width, canvas_height, 10)
 GridLines.create_grid(grid)
 
 # =========================================
