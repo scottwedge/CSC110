@@ -186,7 +186,7 @@ SKY_COLOR = 'SkyBlue2'
 # create app window
 root.iconbitmap('pyramid.ico')
 root.title(APP_NAME)
-root.geometry("600x500+1250+300")
+root.geometry("600x500+600+300")
 
 # create scene header
 header = Label(root, text=APP_NAME, font='Helvetica 18 bold')
