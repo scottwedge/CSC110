@@ -1,94 +1,172 @@
+"""This program demonstrates building a somewhat complex scene."""
+
+# CSC 110 - Assignment #3 -- Drawing a Scene -- Functional Decomposition!
+# The Great Pyramids of Giza
+# Section 03
+# Justin Clark
+# 1/24/2020
+
 from tkinter import *
 import math
 
+# Inspiration for Scene:
+#   Water Color Painting
+#   https://medium.com/@arcaesthetics/monuments-in-watercolor-ep-02-pyramid-complex-at-giza-2faf1b5bf108
+#   Real Photo
+#   https://www.egypttoursplus.com/wp-content/uploads/2014/03/Best-Egypt-Vacations.jpg
+
 def createSky():
-    canvas.create_rectangle(0,0,440,220,fill='SkyBlue2')
+    """creates a sky colored background
+    """
+    canvas.create_rectangle(0,0,440,220,fill=SKY_COLOR)
 
-def createCelestialObject(xCoord, yCoord, diameter, color, border):
-    canvas.create_oval(xCoord, yCoord, xCoord+diameter, yCoord+diameter, fill=color, outline=border)
+def createCelestialObject(xCoord, yCoord, diameter, color, border_color):
+    """creates a celestial object at the given coordinates
+    """
+    canvas.create_oval(xCoord, yCoord, xCoord+diameter, yCoord+diameter, fill=color, outline=border_color)
 
-def createCloud(xCoord, yCoord, diameter, shade):
+def createCloudSection(xCoord, yCoord, diameter, shade):
+    """creates subsections of cloud formation
+    """
+
+    # first oval creates shining effect at the top of the clouds
     canvas.create_oval(xCoord, yCoord, xCoord+diameter, yCoord+diameter, fill=shade, outline='')
+
+    # this oval has a black outline which creates section shadow effects
     canvas.create_oval(xCoord, yCoord+.5, xCoord+diameter, yCoord+diameter, fill=shade, outline='black')
+
+    # this oval has no outline and hides the rest of the black outline created above
     canvas.create_oval(xCoord, yCoord+2, xCoord+diameter, yCoord+diameter, fill=shade, outline='')
 
-def createClouds(coords, shade):
+def createCloudObject(coords, shade, size):
+    """creates cloud grouping
+    """
 
     xCoord = coords[0]
     yCoord = coords[1]
 
-    createCloud(xCoord+0,yCoord+20,80,shade)
-    createCloud(xCoord+120,yCoord+40,80,shade)
-    createCloud(xCoord+40,yCoord+0,120,shade)
-    createCloud(xCoord+180,yCoord+60,40,shade)
+    # y coordinate variables
+    yc20 = 20 / size
+    yc40 = 40 / size
+    yc60 = 60 / size
+    yc80 = 80 / size
+    yc120 = 120 / size
 
-    canvas.create_rectangle(xCoord+5,yCoord+80, xCoord+220,yCoord+120,fill='SkyBlue2')
-    canvas.create_rectangle(xCoord+5,yCoord+80+.5, xCoord+220+1,yCoord+120+1,fill='SkyBlue2',outline='')
+    # x coordinate variables
+    xc5 = 5 / size
+    xc40 = 40 / size
+    xc120 = 120 / size
+    xc180 = 180 / size
+    xc220 = 220 / size
+
+    # diameter variables
+    d40 = 40 / size
+    d80 = 80 / size
+    d120 = 120 / size
+
+    # creates a cloud with four rounded sections of different sizes
+    createCloudSection(xCoord+0,yCoord+yc20,d80,shade)
+    createCloudSection(xCoord+xc120,yCoord+yc40,d80,shade)
+    createCloudSection(xCoord+xc40,yCoord+0,d120,shade)
+    createCloudSection(xCoord+xc180,yCoord+yc60,d40,shade)
+
+    # adds a sky colored retangle with black boarder to create flat black outline for bottom of clouds
+    canvas.create_rectangle(xCoord+xc5,yCoord+yc80, xCoord+xc220,yCoord+yc120,fill=SKY_COLOR)
+
+    # adds a second sky colored retangle slightly wider and taller than the one above to hide it's other borders
+    canvas.create_rectangle(xCoord+xc5,yCoord+yc80+.5, xCoord+xc220+1,yCoord+yc120+1,fill=SKY_COLOR ,outline='')
 
 def createGround():
+    """creates a sand colored ground
+    """
     canvas.create_rectangle(0,205,440,310,fill='goldenrod1')
 
-def createPyramid(apex, base, height, facing_side, left_side):
+def createPyramid(apex, base, height, facing_color, adjacent_color):
+    """creates a 3d looking pyramid
+    """
 
+    # get x and y coords from apex
     x_center = apex[0]
     y_top = apex[1]
 
+    # set the y coords for the front and back of the base
     y_bottom = y_top + height
     y_middle = y_top + height / 1.02
 
+    # get set the left and right side purportions from center
     half_base = base / 2
     x_left = (x_center - (half_base))
     x_right = x_center + (half_base)
     
+    # create an offset to give the illusion of 3 dimensions
     left_offset = ((base * 1.1) - half_base)
     x_left_rear = x_center - left_offset
     
     # facing triangle
     points = [[x_left,y_bottom+4], [x_right,y_bottom], apex]
-    canvas.create_polygon(points, outline='black', fill=facing_side)
+    canvas.create_polygon(points, outline='black', fill=facing_color)
 
-    # left side shadow
+    # adjacent side triangle
     points3 = [apex, [x_left_rear,y_middle], [x_left,y_bottom+4]]
-    canvas.create_polygon(points3, outline='black', fill=left_side)
+    canvas.create_polygon(points3, outline='black', fill=adjacent_color)
 
 def buildScene():
+    """this is the main function where we build the scene.
+    """
 
     createSky()
     
-    createCelestialObject(-12, -12, 35, 'yellow2', 'black') # sun
-    createCelestialObject(380, 110, 15, 'white', 'black') # moon
-    createCelestialObject(384, 110, 15, 'SkyBlue2', 'black') # moon crescent outline
-    createCelestialObject(385, 110, 15, 'SkyBlue2', '') # moon crescent shadow
+    # clouds get smaller and darker as they get farther away
+    createCloudObject([20,30], 'white', 1.5)
+    createCloudObject([250,60], 'Gray90', 3)
+    createCloudObject([320,90], 'Gray87', 5)
+    createCloudObject([400,130], 'Gray85', 6)
 
-    createClouds([10,20], 'white')
+    # sun
+    createCelestialObject(-12, -12, 35, 'yellow2', 'black')
+
+    # creates "full" moon
+    createCelestialObject(380, 110, 15, 'white', 'black') # full circle
+    
+    # create crescent moon by overlapping circles
+    createCelestialObject(384, 110, 15, SKY_COLOR, 'black') # sky colored circle with black outline
+    createCelestialObject(385, 110, 15, SKY_COLOR, '') # sky colored circle with no outline
 
     createGround()
 
-    createPyramid([360,120], 150, 100, 'goldenrod3', 'goldenrod1') # Great Pyramid of Khufu (right, [farthest])
-    createPyramid([245,45], 280, 175+10, 'DarkGoldenrod2', 'goldenrod1') # Pyramid of Khafre (center)
-    createPyramid([130,60], 260, 160+20, 'goldenrod2', 'goldenrod1') # Pyramid of Menkaure (left)
+    # major pyramids (from left, smallest to largest)
+    createPyramid([360, 120], 150, 100, 'goldenrod3', 'goldenrod1') # Great Pyramid of Khufu (right)
+    createPyramid([245, 45], 280, 185, 'DarkGoldenrod2', 'goldenrod1') # Pyramid of Khafre (center)
+    createPyramid([130, 60], 260, 180, 'goldenrod2', 'goldenrod1') # Pyramid of Menkaure (left)
 
-    createPyramid([205,140+5],120,80+20, 'goldenrod2', 'goldenrod1') # sm middle
-    createPyramid([80,160+10],100,60+20, 'goldenrod2', 'goldenrod1') # sm left
-
-    
+    # smaller pyramids up front
+    createPyramid([205, 145], 120, 100, 'goldenrod2', 'goldenrod1') # sm middle
+    createPyramid([80, 170], 100, 80, 'goldenrod2', 'goldenrod1') # sm left
 
 # initialize tkinter
 root = Tk()
 
 # program constants
-APP_NAME = 'Pyramids of Giza'
+APP_NAME = 'The Great Pyramids of Giza'
+SKY_COLOR = 'SkyBlue2'
 
 # create app window
 root.iconbitmap('pyramid.ico')
 root.title(APP_NAME)
-root.geometry("600x500+1250+100")
+root.geometry("600x500+600+300")
 
 # create scene header
 header = Label(root, text=APP_NAME, font='Helvetica 18 bold')
 
 # center the header
 header.grid(row=0, column=0, sticky="EW", pady=60)
+root.grid_columnconfigure(0, weight=1)
+
+# create author/artist signature
+header = Label(root, text='By Justin Clark', font='Times 10 italic')
+
+# center signature
+header.grid(row=1, column=0, sticky="EW", pady=250)
 root.grid_columnconfigure(0, weight=1)
 
 # create canvas
