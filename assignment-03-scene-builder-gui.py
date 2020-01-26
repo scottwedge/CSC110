@@ -76,6 +76,30 @@ def createCloudObject(coords, shade, size):
     # adds a second sky colored retangle slightly wider and taller than the one above to hide it's other borders
     canvas.create_rectangle(xCoord+xc5,yCoord+yc80+.5, xCoord+xc220+1,yCoord+yc120+1,fill=SKY_COLOR ,outline='')
 
+def createBirdWing(xCoord, yCoord, diameter, overlap, background_color):
+    """creates one side of a flying bird
+    """
+
+    # this oval has a black outline which creates section shadow effects
+    canvas.create_oval(xCoord, yCoord, xCoord+diameter, yCoord+diameter, fill='black', outline='black')
+
+    # this oval has no outline and hides the rest of the black outline created above
+    canvas.create_oval(xCoord, yCoord+overlap, xCoord+diameter, yCoord+diameter, fill=background_color, outline='')
+
+def createBird(coords, diameter, overlap, background_color):
+    """creates a bird flying in the sky
+    """
+
+    # get the x and y coords
+    xCoord = coords[0]
+    yCoord = coords[1]
+    
+    # creates left wing
+    createBirdWing(xCoord, yCoord, diameter, overlap, background_color)
+
+    # creates right wing
+    createBirdWing(xCoord+diameter, yCoord, diameter, overlap, background_color)
+
 def createGround():
     """creates a sand colored ground
     """
@@ -122,6 +146,12 @@ def buildScene():
     createCloudObject([320,90], 'Gray87', 5)
     createCloudObject([400,130], 'Gray85', 6)
 
+    # birds flying in sky
+    createBird([20,30], 10, 2, SKY_COLOR) # bird flying near sun
+    createBird([60,50], 10, 2, 'white') # bird flying in front of big cloud
+    createBird([275,73], 8, 1, 'Gray90') # bird flying in front of cloud near pyramid
+    createBird([333,115], 6, .5, SKY_COLOR) # bird flying in front of smaller cloud
+
     # sun
     createCelestialObject(-12, -12, 35, 'yellow2', 'black')
 
@@ -139,6 +169,9 @@ def buildScene():
     createPyramid([245, 45], 280, 185, 'DarkGoldenrod2', 'goldenrod1') # Pyramid of Khafre (center)
     createPyramid([130, 60], 260, 180, 'goldenrod2', 'goldenrod1') # Pyramid of Menkaure (left)
 
+    # bird flying in front of pyramid
+    createBird([240,67], 8, 1,'DarkGoldenrod2')
+    
     # smaller pyramids up front
     createPyramid([205, 145], 120, 100, 'goldenrod2', 'goldenrod1') # sm middle
     createPyramid([80, 170], 100, 80, 'goldenrod2', 'goldenrod1') # sm left
@@ -153,7 +186,7 @@ SKY_COLOR = 'SkyBlue2'
 # create app window
 root.iconbitmap('pyramid.ico')
 root.title(APP_NAME)
-root.geometry("600x500+600+300")
+root.geometry("600x500+1250+300")
 
 # create scene header
 header = Label(root, text=APP_NAME, font='Helvetica 18 bold')
