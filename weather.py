@@ -184,7 +184,28 @@ def display_ascii_image(time, sun_rise, sun_set, weather_abbr):
 def line():
     return '________________________________________________\n'
 
-def display_forcasted_weather():
+def set_forcast_data():
+
+    data = response.json()['consolidated_weather']
+
+    forcast_data = {}
+
+    for forcast_day in range(0,len(data)):
+
+        forcast_data.update({
+            "day" + str(forcast_day) : {
+                'temp': str(convert_to_fahrenheit(data[forcast_day]['the_temp'])),
+                'weather_abbr': data[forcast_day]['weather_state_abbr'],
+                'weather_name': data[forcast_day]['weather_state_name'],
+                'applicable_date': data[forcast_day]['applicable_date']+'T12:00',
+                'max_temp': str(convert_to_fahrenheit(data[forcast_day]['max_temp'])),
+                'min_temp': str(convert_to_fahrenheit(data[forcast_day]['min_temp']))
+            },
+        })
+
+    return forcast_data
+
+def display_forcasted_weather(): 
 
     data = response.json()['consolidated_weather']
 
@@ -211,11 +232,13 @@ def display_forcasted_weather():
 
     print(line())
 
-
-    # for forcast_day in range(0,len(data)):
-    #     print(
-    #         data[0]
-    #     )
+    # test nested loop
+    data = set_forcast_data()
+    for key, value in data.items():
+        x = value
+        for thing, whatsinside in x.items():
+            print(thing, ' : ', whatsinside)        
+       
 
         
 def display_current_weather():
@@ -244,40 +267,10 @@ status_code = response.status_code
 
 # DEBUGING::
     # format_json_response(response.json())
-
-def set_forcast_data():
-
-    data = response.json()['consolidated_weather']
-
-    forcast_data = {}
-
-    for forcast_day in range(0,len(data)):
-
-        forcast_data.update({
-            "day" + str(forcast_day) : {
-                'temp': data[forcast_day]['the_temp'],
-                'weather_abbr': data[forcast_day]['weather_state_abbr'],
-                'weather_name': data[forcast_day]['weather_state_name'],
-                'applicable_date': data[forcast_day]['applicable_date'],
-                'max_temp': data[forcast_day]['max_temp'],
-                'min_temp': data[forcast_day]['min_temp']
-            },
-        })
-
-    return forcast_data
-
-
-
 if not response.json() == []:    
-
-    
 
     woeid = str(response.json()[0]['woeid'])
     response = requests.get(site + '/api/location/'+ woeid) 
-
-
-    x = set_forcast_data()
-    print(format_json_response(x))
 
     city_title = response.json()['title']
 
