@@ -186,20 +186,20 @@ SKY_COLOR = 'SkyBlue2'
 # create app window
 root.iconbitmap('pyramid.ico')
 root.title(APP_NAME)
-root.geometry("600x500+600+300")
+root.geometry("768x432+600+300")
 
 # create scene header
 header = Label(root, text=APP_NAME, font='Helvetica 18 bold')
 
 # center the header
-header.grid(row=0, column=0, sticky="EW", pady=60)
+header.grid(row=0, column=0, sticky="EW", pady=20)
 root.grid_columnconfigure(0, weight=1)
 
 # create author/artist signature
 header = Label(root, text='By Justin Clark', font='Times 10 italic')
 
 # center signature
-header.grid(row=1, column=0, sticky="EW", pady=250)
+header.grid(row=1, column=0, sticky="EW", pady=300)
 root.grid_columnconfigure(0, weight=1)
 
 # create canvas
