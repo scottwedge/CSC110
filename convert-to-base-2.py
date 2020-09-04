@@ -32,7 +32,7 @@ def initializeProgram():
         # Reassign the last quotient as the new dividend
         dividend = quotient
 
-        # Append new remaiders to string
+        # Append new remainders to string
         stringBinary += str(remainder)
 
         # Recursively run this function to divide until quotient is zero

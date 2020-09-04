@@ -57,7 +57,7 @@ class GFG:
 
 if __name__ == "__main__": 
 
-	# object of class Tk, resposible for creating 
+	# object of class Tk, responsible for creating 
 	# a tkinter toplevel window 
 	master = Tk() 
 	gfg = GFG(master) 
@@ -69,5 +69,5 @@ if __name__ == "__main__":
 	master.bind("<KeyPress-Up>", lambda e: gfg.up(e)) 
 	master.bind("<KeyPress-Down>", lambda e: gfg.down(e)) 
 	
-	# Infnite loop breaks only by interrupt 
+	# Infinite loop breaks only by interrupt 
 	mainloop() 

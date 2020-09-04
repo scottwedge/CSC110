@@ -6,7 +6,7 @@ def add(num1, num2):
 def sub(num1, num2):
     return num1 - num2
 
-#Returns the result of multipying num1 * num2
+#Returns the result of multiplying num1 * num2
 def mul(num1, num2):
     return num1 * num2
 

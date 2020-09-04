@@ -542,7 +542,7 @@ def pair(seq):
     return [x for x in pairiter(seq)]
 
 def flatten(seq):
-    """given a list of lists, return a new list that concatentes
+    """given a list of lists, return a new list that concatenates
     the elements of (seq).  This just does one level of flattening;
     it is not recursive.
     """

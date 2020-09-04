@@ -211,5 +211,5 @@ canvas.place(relx=0.5, rely=0.5, anchor=CENTER)
 # build scene
 buildScene()
 
-# infnite loop breaks only by interrupt 
+# infinite loop breaks only by interrupt 
 root.mainloop()
