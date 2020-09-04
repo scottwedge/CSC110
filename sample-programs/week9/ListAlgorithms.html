@@ -1,0 +1,191 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Problem Solving with Lists</title>
+</head>
+
+<body>
+<a href="javascript: history.go(-1)">Back</a>
+<h3 align="center">Problem Solving with Lists (and Sequences in General)</h3>
+<p>A list holds a collection of related data.&nbsp; Typically, an indexed list of the 
+kind we are examining would hold <b>a collection of related values, each of 
+which represents the same kind of thing</b>.&nbsp; For example, we might work with a 
+set of test scores or a group of names.&nbsp; If the data stored in the list are 
+chosen carefully, then it is possible to perform many useful operations on the 
+data.&nbsp; </p>
+<h4>Finding the Largest Value</h4>
+<p>Imagine a list contains a series of interest rates offered by banks on 
+savings accounts.&nbsp; Write a program to <b>find the highest interest rate</b>.&nbsp; 
+Think about how you would solve this problem <b>by hand</b>.&nbsp; Imagine that 
+instead of a Python list, you have a stack of papers, each showing one interest 
+rate.&nbsp; How would you find out what the highest rate is?&nbsp;&nbsp;</p>
+<p>I'm sure you could do it even if you were allowed to look at each paper only 
+once.&nbsp; All you need to do is <b><u>remember</u> one number</b> -- the highest 
+rate you have seen.&nbsp; If you see a rate that is higher, then remember the new 
+number (and forget the previous one).&nbsp; This one number you need to remember 
+corresponds to a <b><u>variable</u></b> in your program -- an <b><u>accumulator</u></b>, 
+in fact, since we will use it in a loop and it will accumulate information as 
+the loop progresses.</p>
+<p>The process of looking at each piece of paper one time corresponds to the <b>
+loop</b> you will use in the program to solve the problem.&nbsp; We would say that 
+you need to <b>iterate through the list, examining it one element at a time</b>.&nbsp; 
+Here is a program that implements this solution:</p>
+<table border="1" cellpadding="9" cellspacing="0">
+	<tr>
+		<td nowrap="nowrap" valign="top">&nbsp;<font size="2" color="#000099"><b># 
+		Find the highest value in 'nums'.<br>
+&nbsp;# len(nums) assumed to be at least 1.<br>
+&nbsp;def find_highest(nums):<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; highest = nums[ 0 ]<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; for ix in range(1, len(nums)):<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if nums[ ix ] &gt; highest:<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; highest = nums[ ix ]<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; return highest<br>
+		<br>
+		&nbsp;interestRates = [1.5, 0.8, 3.5, 2.0, 1.8, 1.9]<br>
+		&nbsp;ans = find_highest(interestRates)<br>
+		&nbsp;print('Highest rate is ' + str(ans) + '%')</b></font></td>
+		<td valign="top"><br>
+		&nbsp; # Test results: Printed&nbsp;<br>
+		&nbsp;&nbsp;# in the shell window:<br>
+		&nbsp;&nbsp;<br>
+		&nbsp;&nbsp;<b>Highest rate is 3.5%<br>
+		&nbsp;&nbsp;</b><br>
+		&nbsp;</td>
+	</tr>
+</table>
+<p>Notice the following things about this example: </p>
+<ul>
+	<li>An <b>accumulator called 'highest'</b> is used in this loop.&nbsp; This 
+	variable is <b>initialized</b> to the value of the first element in the list 
+	before the loop begins.&nbsp;</li>
+	<li>Each subsequent <b>element</b> in the list is checked inside the loop.&nbsp; 
+	We do this by causing the range function to produce a sequence that begins 
+	with<b> 1</b>.&nbsp; The first element of the list is not checked inside the loop 
+	because it was handled during the initialization.</li>
+	<li>A <b>decision</b> is used inside the loop -- the value of 'highest' is 
+	changed only if the list element being checked is actually higher than the 
+	highest value already seen.</li>
+	<li>Since this process has been implemented inside a function, a <b>return 
+	statement</b> is used to send the highest value back to the calling 
+	statement.</li>
+</ul>
+<h4>Searching through a List</h4>
+<p>Searching is an extremely common task with lists.&nbsp;&nbsp;The easiest way to find 
+out if a particular value is present in a list is to perform a <b>sequential</b>
+<b>search</b>.&nbsp; A sequential search involves iterating through the elements of a 
+list in sequence and examining each element to see if it has the characteristics 
+being sought.&nbsp; Here is an example:</p>
+<table border="1" cellpadding="9" cellspacing="0">
+	<tr>
+		<td nowrap="nowrap" valign="top"><font size="2" color="#000099"><b>&nbsp;# 
+		Returns True if the value 'target' is<br>
+		&nbsp;# in the list 'arr'; False otherwise.<br>
+		&nbsp;def find_in_list( arr, target ):<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; for num in arr:<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if num == target:<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return True<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; return False<br>
+		<br>
+		&nbsp;sizes = [6, 7, 8, 8.5, 9, 11]<br>
+		&nbsp;ans9 = find_in_list(sizes, 9);<br>
+		&nbsp;ans10 = find_in_list(sizes, 10);<br>
+		&nbsp;print('Have 9: '&nbsp; + str(ans9) \<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; + '; have 10: ' + 
+		str(ans10))</b></font></td>
+		<td valign="top"><br>
+		&nbsp; # Test results: Printed&nbsp;<br>
+		&nbsp;&nbsp;# in the shell window:<br>
+		&nbsp;&nbsp;<br>
+		&nbsp; <b>Have 9: True; have 10: False</b><br>
+		&nbsp;&nbsp;</td>
+	</tr>
+</table>
+<p>Notice the following things about this example: </p>
+<ul>
+	<li>The code to perform the search is written as a function.&nbsp; Although this 
+	is not necessary (see next example), if the code is written this way, it can 
+	be re-used with other tests and/or other lists.</li>
+	<li>The goal of the search is only to determine if <b>the target is present 
+	or not</b>.&nbsp; The function returns <i>True</i> if the target is present in 
+	the list, or <i>False</i> if it is not.</li>
+	<li>Both the list and the value being sought (the 'target') are passed into 
+	the function as parameters.</li>
+	<li>The loop <b>iterates through all elements of the list</b>.&nbsp; An <i>if</i> 
+	statement is used to examine the value of each element.&nbsp; If the target is 
+	found, the loop is terminated immediately and the function returns the value
+	<i>True</i>.&nbsp; If the entire loop completes without ever encountering the 
+	target value, the function returns <i>False</i>.</li>
+	<li>When the function is called, the <b>order</b> of the arguments in the 
+	function call must match the order of the parameters in the function 
+	definition -- the list must be provided first, followed by the target value.</li>
+	<li>This search function would work just as well with a list of strings.&nbsp; 
+	</li>
+	<li>Sometimes it is more useful to know the index where the target was 
+	found, not just if it was found.&nbsp; For example, the function might return the
+	<b><u>index</u></b> where the target was found, or return a special value if 
+	the target was not found.&nbsp; A common special value to return in other 
+	programming languages if the target is not found is -1 because -1 is not a 
+	legitimate index value in most programming languages, so it can act like a 
+	flag value.&nbsp; In Python -1 is a legal index (pointing to the last 
+	element on the list), so one might return the special value <i>None</i>, or 
+	perhaps raise an exception (as the built-in 'index' method does).</li>
+</ul>
+<h4>Sifting (looking for <u>multiple</u> elements that match a certain criteria)</h4>
+<p>Sometimes, the goal of the search is to produce more than one result.&nbsp; A 
+search of this kind is often called a <b>'sifting' operation</b> -- a name that 
+calls to mind the process of sifting through a mixture to find elements of a 
+particular size, weight, etc.&nbsp; For example, we may wish to find all the values 
+in a numeric list greater than a particular threshold, or maybe all the values 
+in a string list beginning with a particular character.&nbsp; Here is an example that 
+finds all the elements that begin with &quot;M&quot;:</p>
+<table border="1" cellpadding="9" cellspacing="0">
+	<tr>
+		<td nowrap="nowrap" valign="top"><br>
+		<b><font size="2" color="#000099">&nbsp; members = ['Homer',&nbsp;'Marge', 'Lisa', 
+		'Bart', 'Maggie']<br>
+		&nbsp; for ix in range(len(members)):<br>
+		&nbsp;&nbsp;&nbsp; &nbsp; if members[ix][0] == &quot;M&quot;:<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; print(members[ix], end=' ')</font></b> <br>
+		&nbsp;&nbsp;</td>
+		<td valign="top"><br>
+		&nbsp; # Test results: Printed&nbsp;<br>
+		&nbsp;&nbsp;# in the shell window:<br>
+		&nbsp;&nbsp;<br>
+		&nbsp; <b>Marge Maggie</b></td>
+	</tr>
+</table>
+<p>Notice the following things about this example: </p>
+<ul>
+	<li>The loop must iterate through every element in the list, even if the 
+	target is found.&nbsp; This is because it is possible for more than one element 
+	to meet the search criteria.</li>
+	<li>The search criteria are expressed as the condition of an <i>if</i> 
+	statement.&nbsp; Any condition that can be tested in this way can be used as the 
+	basis for a search.&nbsp; Imagine searching for all sizes between 10 and 12, or 
+	for all interest rates greater than or equal to 2%.</li>
+	<li>Some means must be provided to <b>show multiple results</b>.&nbsp; In this 
+	example, the results are printed, so 'print( )' is called each time a 
+	matching element is found.&nbsp; Another common approach is to <b>create a new 
+	list</b> and fill it with all elements in the original list that match the 
+	search criteria.&nbsp;&nbsp;</li>
+	<li>A simple search or sift operation should not normally disturb (change) 
+	the list being searched.</li>
+</ul>
+<p>Many variations on&nbsp;searches and sifts are possible.&nbsp; In all cases, the basic 
+principles are the same: </p>
+<ul>
+	<li>Iterate through all elements of the list.</li>
+	<li>Use an <i>if</i> statement to examine each element to see if it meets 
+	the search criteria.</li>
+	<li>Take appropriate action if a match is found.</li>
+</ul>
+<p>The simple, or sequential, search described here works fine for small lists 
+but can be inefficient for large lists.&nbsp; Other, more efficient techniques (like 
+binary search) are available, but are beyond the scope of this course. </p>
+
+</body>
+
+</html>

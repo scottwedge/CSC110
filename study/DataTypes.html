@@ -1,0 +1,81 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Data Types</title>
+</head>
+
+<body>
+
+<p class="book_chapter_title">
+
+<a href="javascript: history.go(-1)">Back</a>
+</p>
+<p align="center"><b><font size="4">Data Types</font></b></p>
+<p>The basic structure used for numeric calculations in any programming language 
+is the <b>expression</b>. </p>
+<p>Here is an example with numbers:</p>
+<p><b><font color="#000099">x = 14<br>
+y = x + 3</font></b></p>
+<p>What value do you think the variable y has after these statements? Hopefully 
+it seems obvious that y will have the value 17. The construction 'x + 3' is an 
+example of an expression. In this case, it is made up of 3 things: a <b>variable</b> 
+named <b><i>x</i></b>, a <b>numeric literal</b>: <b><i>3</i></b>, and an <b>
+operator</b>: <b><i>+</i></b>. When the + operator has numbers for <b><i>
+operands</i></b> (instead of strings), it becomes the <b>addition operator</b>. 
+All of this illustrates an important point:</p>
+<p><b>Numeric data is not the same as string data.</b> </p>
+<p>So, the following two statements are <b>not the same</b>:</p>
+<p><font color="#000099"><b>x = '14'&nbsp; </b># could also be written like 
+this:&nbsp; x = &quot;14&quot;&nbsp; --&nbsp; either single or double quotes may be used<b><br>
+x = 14</b></font></p>
+<p>The first stores in the variable x a 2-character string. The second stores 
+the number 14 as an integer value.</p>
+<p>The rest of this note describes 3 important rules for working with data.</p>
+<p><b>Rule 1. It is important to always be aware of the type of data stored in a 
+variable.</b> Any type of data may be stored in any variable in Python (unlike 
+some other programming languages). <b>If the wrong data type is used, 
+expressions may not produce the correct results. </b>For example, consider the 
+following:</p>
+<p><b><font color="#000099">str1 = '14'<br>
+num1 = 14<br>
+ans1 = str1 + str1<br>
+ans2 = num1 + num1</font></b></p>
+<p>The value of ans1 is the 4-character string &quot;1414&quot;. The value of ans2 is the 
+number 28. <b><u>Make sure you understand this!</u></b></p>
+<p>What do you think will happen if you combine string and numeric data in the 
+same expression? For example:</p>
+<p><b><font color="#000099">ans3 = str1 + num1</font></b></p>
+<p>The answer in Python 3 is that a TypeError will be reported.&nbsp; This kind 
+of &quot;mixed type&quot; expression is not allowed in Python (although it is allowed in 
+some other programming languages). </p>
+<p><b>Rule 2. Use only numeric data in numeric expressions, and use only string 
+data in string expressions.</b>&nbsp; Following this rule may require you to add 
+code to convert between data types.&nbsp; The built-in 'int()' function can be 
+used to attempt to convert a string value to an integer.&nbsp; The 'float()' 
+function can be used to attempt to convert a string value to a floating-point 
+number.&nbsp; To convert a number to a string, 'str()' can be used for a basic 
+conversion with default formatting, or 'format()' can be used to retain more 
+control over how the number will be represented in the string (e.g. how many 
+digits will be shown after the decimal point).&nbsp; The 'int()', 'float()' and 
+'format()' functions are described in Chapter 2 in the Gaddis text.</p>
+<p><b>Rule 3. Always explicitly convert user input to a number in order to 
+obtain numeric data.</b> Here is an example:</p>
+<p><b><font color="#000099">text = input('Give me a number: ') <br>
+num = float(text) </font></b></p>
+<p>The first statement gets a string value from the user and stores it in the 
+'text' variable. The next statement converts the string value to a number by 
+passing it to the 'float()' function; the function returns a float value that is 
+stored in the 'num' variable. Another way of writing this is</p>
+<p><b><font color="#000099">num = float(</font><font color="#800080">input('Give 
+me a number: ')</font><font color="#000099">)</font></b></p>
+<p>This compound statement uses a function call (input) as the argument for 
+another function call (float). This means that <b>the <u>value</u> returned by 
+the input function is used as the <u>argument</u> for float</b>. Compound 
+constructions like this are common. <br>
+&nbsp;</p>
+
+</body>
+
+</html>

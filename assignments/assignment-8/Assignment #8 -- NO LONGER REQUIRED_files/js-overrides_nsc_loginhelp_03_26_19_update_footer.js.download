@@ -1,0 +1,91 @@
+/* North Seattle College JavaScript - uses the CanUt Canvas library - http://www.waol.org/javascript
+ * Edited: 03/26/19
+ * TERRE O'MALLEY
+*/
+
+$.ajax({
+
+    url: "https://d1la9j37oq1fed.cloudfront.net/canvas_shared/canut_base_canvas.min.js",
+
+    dataType: "script",
+
+    cache: true,
+
+    crossDomain: true
+
+}).done(function() {
+	// **************************************
+	//
+	//  College custom javascript - 
+	//     Place below this comment block
+	//
+	// **************************************
+    
+    // Add the simple Admin menu link
+   // CanUt.AddAdminMenu(); //I don't think we did this as Canvas adds the button now
+
+    // Customize the logon form prompts:
+	CanUt.SetUsernamePrompt('Student=SID, Emp.=Email');
+    //CanUt.SetUsernamePrompt('Nine digit Student ID (SID)'); //likely causing trouble in sbctc page //this may not be the problem, it may be the group page stuff below
+    //CanUt.FlagNumericUsernameForMobile();
+	CanUt.SetPasswordPrompt('First 8 letters of last name');
+	CanUt.SetLostPasswordPrompt('Enter Your Email');
+	 //CanUt.SetPasswordPrompt('First six letters of last name (lowercase)'); //likely causing trouble in sbctc page
+	 //CanUt.SetLostPasswordPrompt('Enter Your SID'); //likely causing trouble in sbctc page
+    
+	
+    // Hide items we don't want:
+    CanUt.HideAccountDelete();
+    CanUt.HideResetCourse();
+    CanUt.HideConcludeCourse();
+    //CanUt.RemoveAllFooterLinks(); 
+    //CanUt.HideGradesMenu();
+    CanUt.HideAssignmentsMenu();
+	//Change Inactive tag to Dropped
+	CanUt.RelabelInactiveToDropped();
+   window.ALLY_CFG = {
+    'baseUrl': 'https://prod.ally.ac',
+    'clientId': 169
+};
+$.getScript(ALLY_CFG.baseUrl + '/integration/canvas/ally.js');
+    
+    // **************************************
+	  //  North Seattle College Canvas javascript - 
+	  //  Updates desktop web page login page/footer
+	  // **************************************
+    
+    $('div.ic-Form-control--login .ic-Label').first().html('Login: Students use SID, Employees use college email'); //replace "Email" with "Login"
+    $('#pseudonym_session_unique_id').attr("placeholder","Type your login information here");//text inside login boxID
+    $('#pseudonym_session_password').attr("placeholder",'1st 8 letters of last name - until you change your password');  
+  //text inside password box
+    //$('.Button--login').html('Enter'); //replace "Log in" with "Enter"
+  
+  //replaced "Forgot Email message" with South Seattle College instructions ... 
+   // $('.ic-Login__forgot-text').html('<strong>Enter the email you provided when you registered with the college into the input field below and we will email you a link to change your Canvas password.</strong><p style=font-size:90%;>To update the email you registered with the college, visit <a href=http://tinyurl.com/updatecollegeprofile target=_blank style=text-decoration:underline;>http://tinyurl.com/updatecollegeprofile</a> and select South Seattle College (link) Update Your Address, <b>Email</b> or Phone.</p>'); 
+
+	// Add the NSC footer links:
+	$('footer#footer a.footer-logo').remove();
+	$('#footer-links').html('');
+    $('#footer-links').append('<a href="https://elearning.northseattle.edu/canvas-support/what-canvas" target="blank">How to Login</a> ');
+	$('#footer-links').append('<a href="http://guides.instructure.com/" target="blank">Canvas Help Guides</a> ');
+    $('#footer-links').append('<a href="https://elearning.northseattle.edu/#" target="blank">NSC eLearning Support</a> ');
+    $('#footer-links').append('<a href="mailto://north.elearning@seattlecolleges.edu">north.elearning@seattlecolleges.edu</a> ');
+    //$('#footer-links').append(' <span class="fake-footer-link"> Help Desk: (206) 934-3738 </span>'); //is much bigger than other links
+	
+	
+	/* //code to add button in group spaces that allow users return to course home page //this is most likely causing problems on the sbctc page and inbox
+   var courseUrl = '/courses/' + ENV.group.context_id;
+
+    $("body[class*='context-group_'] nav#breadcrumbs").append("<div id=noticeBox class=ui-state-highlight><span id=noticeBoxText>You are in a Group workspace, which is separate from the main area of your course (<a id=noticeBoxLinkMore target=_blank href=https://community.canvaslms.com/docs/DOC-4121#jive_content_id_People_and_Groups>Groups Help Guide</a>)</span><a href='" + courseUrl  + "' class='btn btn-primary leave-student-view' id=noticeBoxLink><span id=noticeBoxLinkText>Go back to the course</span></a></div>");
+	*/
+	//Footer table of South Seattle College resources and links ... 
+	 //$('#footer').html('<table style="color:#000; width:100%; max-width:400px; margin:auto; font-size:95%;"><tr style="vertical-align:top; text-align:center; height:30px;"><td colspan="2">South Seattle College (SSC) Canvas Resources</td></tr><tr style="vertical-align:top;"><td style="width:50%;"><ol><li style="padding-bottom:4px;"><a href="https://www.youtube.com/watch?v=-j6qNnHnVno" target="_blank">Introduction (video)</a></li><li style="padding-bottom:4px;"><span><a href="https://southseattle.instructure.com/courses/800181" target="_blank">Student Resources</a></span></li><li style="padding-bottom:4px;"><span><a href="https://sites.google.com/a/seattlecolleges.edu/canvas/student-login" target="_blank">Login and Password Help</a></span></li><li style="padding-bottom:4px;"><a href="http://guides.instructure.com/" target="blank">Canvas Guides</a></li></ol></td><td style="width:50%;"><ol start="5"><li style="padding-bottom:4px;"><a href="https://southseattle.instructure.com/courses/800181/wiki/get-help-the-many-ways" target="_blank">Support &amp; Help</a></li><li style="padding-bottom:4px;"><a href="http://sites.southseattle.edu/online/" target="_blank">SSC eLearning</a></li><li style="padding-bottom:4px;"><a href="http://tinyurl.com/sccd-canvas/" target="_blank">SCD Canvas Resources</a></li><li style="padding-bottom:4px;"><a href="http://seattlecolleges.edu/district/currentstudents/profile.aspx" target="_blank" title="Your campus email address MUST be current for you to receive a Canvas course invitation and/or request a change of Canvas password">Update college contact info.</a></li></ol></td></tr></table>');		
+
+	 	 
+	 // ***********************************************************  
+//  Place all custom college script above this comment block
+// ***********************************************************
+});
+var atomicSearchWidgetScript = document.createElement("script");
+atomicSearchWidgetScript.src = "https://d2u53n8918fnto.cloudfront.net/atomic_search_widget.js" + "?ts=" + new Date().getTime();
+document.getElementsByTagName("head")[0].appendChild(atomicSearchWidgetScript);

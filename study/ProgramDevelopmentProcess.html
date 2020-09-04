@@ -1,0 +1,189 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Program Development Process</title>
+</head>
+
+<body>
+
+<div class="generalbox box">
+	<div class="book_content">
+		<p class="book_chapter_title">
+<a href="javascript: history.go(-1)">Back</a>
+</p>
+		<h3 align="center">Planning your Programs </h3>
+		<center><i><br>
+		&quot;The sooner you start coding your program, the longer it's going to 
+		take.&quot; </i>-
+		Henry Ledgard<br>
+&nbsp;</center>
+		<p>Writing Python statements (&quot;coding&quot;) is only one part of the process 
+		of developing a computer program. Here is one way to view the entire 
+		program development process:</p>
+		<ol>
+			<li><b>ANALYZE</b> the problem -- clearly define the problem and 
+			ensure that it is fully understood. Determine the required <b>input</b> 
+			and <b>output</b>.</li>
+			<li><b>DESIGN</b> the solution to the problem -- that is, develop an
+			<b>algorithm</b> that will solve the problem. </li>
+			<li><b>CODE</b> -- translate the algorithm into Python code. This 
+			step includes the development of an effective <b>user interface</b> 
+			that obtains required <b>inputs</b> from the user and displays 
+			results (<b>output</b>).</li>
+			<li><b>TEST</b> and <b>DEBUG</b> the program. How can you prove to 
+			yourself (and others) that the program works for all expected and 
+			unexpected inputs?</li>
+			<li><b>DOCUMENT</b> the program. Documentation consists of all 
+			materials that describe the program, its purpose, and how it 
+			operates. Full documentation is an essential element of every 
+			programming project.</li>
+		</ol>
+		<p>This process is often actually expressed as a <b>cycle</b>, because 
+		it may be necessary at any point to backtrack to an earlier step and 
+		then move forward again. For example, testing may prove that the 
+		algorithm is incorrect, necessitating a fall back to the design stage.&nbsp; 
+		(Note that this description differs is some details from the one in 
+		Section 2.1 in your textbook.&nbsp; I encourage you to read both 
+		carefully.&nbsp; Together they may help you understand some of the 
+		details of the process.)</p>
+		<p>Let's take a closer look at each step in the process, especially as 
+		it applies to the work you will do this quarter.</p>
+		<h4>1. Analyze the Problem </h4>
+		<p>The goal of the first step in the process is to fully understand the 
+		objectives of the program. Most projects begin as a <b>specification</b> 
+		from a 'customer'. In general, the initial specification may be 
+		incomplete, inconsistent, or even impossible -- or, the programmer may 
+		simply not understand what is needed. An initial specification is just a 
+		starting point, and must be interpreted, refined and completed by the 
+		programmer in consultation with the customer. Once both parties are in 
+		agreement about what the program will do, the project can continue.</p>
+		<p>Also in this step, the programmer needs to convert the narrative 
+		specification into a list of specific programming tasks -- outputs that 
+		need to be provided and inputs that need to be obtained from the user. 
+		In the next step, we will consider the processing steps (e.g. 
+		calculations) that need to be performed in order to produce the required 
+		outputs from the inputs provided. </p>
+		<p>In this course, a homework assignment serves as a specification and 
+		your instructor is the customer! Fortunately, this customer is very 
+		experienced at writing good specifications, so you should not have 
+		difficulties with 'inconsistent' or 'impossible'
+		<img border="0" src="images/smiley.gif" width="15" height="15">. Your 
+		primary objective will be to make sure you <i>understand</i> what the 
+		assignment requires. If you are uncertain about the requirements or have 
+		questions about some aspect of the specification (assignment), then you 
+		need to seek clarification (e.g. post a message in the Discussion 
+		Forum). </p>
+		<h4>2. Design an Algorithm to Solve the Problem</h4>
+		<p>In order to program a computer to solve a problem, you need to have a 
+		plan -- <b>a logical sequence of precise steps that solves the problem</b> 
+		-- an <b><u>algorithm</u></b>! This may be as simple as a formula, or it 
+		may be a complex procedure involving decisions and repetition. 
+		Developing an algorithm that solves the problem is what the design step 
+		is all about! </p>
+		<p>For most of our programs, it will be useful to employ a general 
+		pattern that breaks the program down into 3 or 4 regions. The primary 
+		regions are </p>
+		<ul>
+			<li><b>Input</b> -- get some information from the user</li>
+			<li><b>Processing</b> -- calculate something or perform other 
+			processing (<i>implement</i> the algorithm)</li>
+			<li><b>Output</b> -- display calculated results to the user</li>
+		</ul>
+		<p>An additional region may be needed before any of these -- a section 
+		at the top of the Python program where values are assigned to <b>
+		constants</b> for use throughout the program. <b>A <u>constant</u> is 
+		simply a variable whose value is assigned one time and never changed.</b> 
+		By giving the constant a meaningful name, and then using that name 
+		wherever the special value is needed, a program is made more reliable. 
+		The 'Boxes' sample program is an example that employs all four of these 
+		regions.</p>
+		<p>
+		<img border="0" src="images/FlowChartForProgramDevelopmentNote.gif" width="135" height="363" align="right">For 
+		programs with any level of complexity, and especially for programs that 
+		depart from a simple 'linear' flow (something that will be possible as 
+		soon as we study selection statements), it is sensible to use some kind 
+		of design tool to help visualize the 'flow' of the program as it is 
+		executed. One such tool is a <b>flow chart</b> (see example at right). A 
+		flow chart makes use of different kinds of boxes (or '<b>blocks</b>') to 
+		represent each step in the execution of a program, and <b>flow lines</b> 
+		to show the flow of control between blocks. Program flow is always in 
+		the direction of the arrows, so steps are executed in a particular 
+		order. In general, <b>if the steps of a program are executed out of 
+		order, the program will not produce the same results</b>. <b><u>Order 
+		matters!</u></b> Flow charts help the programmer visualize the order of 
+		execution. Consider using a tool like this if it helps you visualize the 
+		operation of your program. Flow charts are more valuable when programs 
+		contain control structures like selection structures and loops, which we 
+		will cover later this quarter.</p>
+		<p>Another, more popular design tool is <b><u>pseudocode</u>: an outline 
+		for a program written in a form that can be easily converted into actual 
+		code.</b> There are no syntax rules for pseudocode. Rather, think of it 
+		as a shorthand description of the program steps written <b>in the order 
+		they will be performed</b>. Writing out the steps in shorthand before 
+		actually writing code actually saves time, because corrections can be 
+		made without struggling with error messages. Once the pseudocode seems 
+		correct, it can be converted into actual code.</p>
+		<p>One popular and valuable technique is to write pseudocode in the form 
+		of a series of short comments. <b>These comments then form a guide for 
+		writing the actual code</b>, and can remain in place as a reminder of 
+		what the code is supposed to do. This is a great way to avoid the 
+		problem of accidentally skipping a step in a program!</p>
+		<p>No particular planning technique will be enforced in this course, but 
+		whichever approach you choose to use, be sure to plan your programs 
+		carefully before you begin writing code -- you'll be glad you did!</p>
+		<h4>3. Write the Code</h4>
+		<p>Coding is the process of translating the algorithm into a set of 
+		Python statements. Because of the possibility of introducing syntax 
+		errors, I recommend developing your programs progressively -- <b>add 
+		just a few lines at a time, then test the program to make sure it still 
+		works</b>. This means you are always working from a known-good program. 
+		If adding just one line causes the program to generate an error, you 
+		have a good idea where to look for the problem! </p>
+		<h4>4. Test and Debug</h4>
+		<p><b>Every program needs to be tested!</b> The purpose of <b>testing</b> 
+		is to prove that the program produces the correct results for given sets 
+		of input values. This means <b>trying some inputs, then independently 
+		confirming that the results are correct</b> (by performing calculations 
+		by hand, for example). When choosing input values to test, consider both 
+		'typical' data and also any special cases. We will talk more about 
+		testing as we work with different kinds of programming problems.</p>
+		<p><b>Debugging</b> is the process of locating and correcting any errors 
+		(&quot;bugs&quot;) in the program. If testing turns up a problem, then the 
+		debugging process begins. One of the most important tools in debugging 
+		is the ability to observe the values of variables at different points in 
+		the program. Consider adding temporary statements that show the value of 
+		a variable at a place in the code where you suspect a problem. Once the 
+		problem is solved, these temporary statements can be removed (or maybe 
+		just 'commented out' so they can be used again in the future if needed).
+		</p>
+		<h4>5. Documentation</h4>
+		<p>The purpose of documentation is to provide a record of how the 
+		problem was solved and how the resulting program works. In this course, 
+		we will keep it simple. Your documentation should consist of the 
+		following: </p>
+		<ul>
+			<li>A standard block comment at the beginning of the program showing 
+			the <b>file name</b>, a <b>brief description</b> of the program, 
+			your <b>name</b>, the <b>assignment number</b>, and the <b>date</b>.</li>
+			<li>A small number of 'inline comments' (comments embedded among the 
+			lines of code) that provide information for only those things that 
+			really need an explanation. Don't include inline comments just for 
+			the sake of writing comments. Focus on saying <b>why</b> something 
+			is being done, and not what is being done (which will be obvious to 
+			other programmers anyway). Sometimes you don't need any inline 
+			comments!</li>
+			<li>A block comment at the <b>end</b> of the program that shows <b>
+			documented test cases</b>: a set of tests performed (inputs used and 
+			output produced) and an explanation of why you feel this testing 
+			proves that the program is working correctly. The 'Mileage' and 
+			'Boxes' sample programs demonstrate the use of documented test 
+			cases.</li>
+		</ul>
+	</div>
+</div>
+
+</body>
+
+</html>

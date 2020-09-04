@@ -118,6 +118,8 @@ def format_display_time(time):
     if hour > 12: 
         am_pm = 'PM'
         hour -= 12
+    elif hour == 12:
+        am_pm = 'PM'
     else:
         am_pm = 'AM'
         if hour == 0: hour = 12
@@ -139,7 +141,6 @@ def check_if_daylight(time, sun_rise, sun_set):
         return True
     else:
         return False
-
 
 def get_minute(time):
     return time[14:16]
@@ -207,54 +208,50 @@ def set_forcast_data():
 
 def display_forcasted_weather(): 
 
-    data = response.json()['consolidated_weather']
+    display_output = ''
 
-    for forcast_day in range(1,len(data)):
+    data = set_forcast_data()
 
-        temp = data[forcast_day]['the_temp']
-        weather_abbr = data[forcast_day]['weather_state_abbr']
-        weather_name = data[forcast_day]['weather_state_name']
-        applicable_date = data[forcast_day]['applicable_date']
-        max_temp = data[forcast_day]['max_temp']
-        min_temp = data[forcast_day]['min_temp']
-    
-        print(
-            line() +
-            applicable_date + '\n' +
-            display_ascii_image(
-                applicable_date+'T12:00', 
-                sun_rise, 
-                sun_set, 
-                weather_abbr) + '\n' 
-            'High: ' + str(convert_to_fahrenheit(max_temp)) + '\n' +
-            'Low: ' + str(convert_to_fahrenheit(min_temp))
+    for key, value in data.items():
+        forcast_day = value
+
+        x_abbr = forcast_day['weather_abbr']
+        x_date = forcast_day['applicable_date']
+        x_min_temp = forcast_day['min_temp']
+        x_max_temp = forcast_day['max_temp']
+
+        display_this_ascii_image = display_ascii_image(
+            x_date, 
+            sun_rise, 
+            sun_set, 
+            x_abbr
         )
 
-    print(line())
+        display_output += \
+            line() + \
+            format_display_date(x_date) + '\n' + \
+            display_this_ascii_image + '\n\n' + \
+            'High: ' + x_max_temp + '\n' + \
+            'Low: ' + x_min_temp + '\n'
 
-    # test nested loop
-    data = set_forcast_data()
-    for key, value in data.items():
-        x = value
-        for thing, whatsinside in x.items():
-            print(thing, ' : ', whatsinside)        
-       
-
+    display_output += line()
+    return display_output
         
 def display_current_weather():
         
-    print(
-        line() +
-        '\t' + format_display_date(time) + 
-        '\t' + format_display_time(time) + '\n' +
-        line() +
-        'Current weather conditions for: ' + city_title + '\n' +
-        display_ascii_image(time, sun_rise, sun_set, weather_abbr) + '\n' +
-        str(convert_to_fahrenheit(temp)) + '°F\n' +
-        line() +
-        'Sun Rise: ' + format_display_time(sun_rise) + '\n' +
-        'Sun Set: ' + format_display_time(sun_set)
-    )
+    current_weather = \
+        line() + '\n' + \
+        '\t' + format_display_date(time) + \
+        '\t' + format_display_time(time) + '\n' + \
+        line() + \
+        'Current weather conditions for: ' + city_title + '\n' + \
+        display_ascii_image(time, sun_rise, sun_set, weather_abbr) + '\n\n' + \
+        str(convert_to_fahrenheit(temp)) + '°F\n' + \
+        line() + '\n' + \
+        'Sun Rise: ' + format_display_time(sun_rise) + '\n' + \
+        'Sun Set: ' + format_display_time(sun_set) + '\n'
+
+    return current_weather
 
 site = 'https://www.metaweather.com/'
 
@@ -290,8 +287,10 @@ if not response.json() == []:
     max_temp = data['max_temp']
     min_temp = data['min_temp']
 
-    display_current_weather()
-    display_forcasted_weather()
+    print(
+        display_current_weather() + \
+        display_forcasted_weather()
+    )
 
 else:
     print('city not found')

@@ -1,0 +1,115 @@
+
+<!-- saved from url=(0107)https://faculty.seattlecolleges.edu/faculty/vince.offenback/class/csc110/samples/SelectionSortPractice.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+  <title>Practice Selection Sort</title>
+</head>
+
+<body>
+
+<h3>Practice Selection Sort</h3>
+Click the button once to show an array of random numbers.  On paper,
+write a table that shows how the array would be sorted.  Use one row to
+<b><u>show the array after each pass</u></b> through the Selection
+Sort algorithm.  To check your results, click the button again to show the
+solution.  You can use the second button to choose <b><u>ascending</u></b> or 
+<b><u>descending</u></b> order before you sort the array.
+
+<p>
+
+</p><form name="sort">
+  <input type="button" name="b1" value="Show Sample Array" onclick="nextCommand()">
+  <br>
+  <input type="button" name="b2" value="Ascending Order (click to change)" onclick="changeOrder()">
+  <p>
+  <table border="1" width="370" height="290" cellpadding="10">
+    <tbody><tr><td valign="top"><div id="out"></div>&nbsp;</td></tr>
+  </tbody></table>
+</p></form>
+
+<script type="text/javascript">
+
+var testArray = new Array();
+var next = "fill";
+var ascending = true;
+var order = "Ascending";
+var output = "";
+
+function changeOrder()
+{
+  ascending = !ascending;
+  if (ascending)
+    order = "Ascending";
+  else
+    order = "Descending"
+  document.sort.b2.value=order + " Order (click to change)";
+  nextCommand();
+  if ( next == "fill" )
+    nextCommand();
+}
+
+function nextCommand()
+{
+  if ( next == "fill" )
+  {
+    fillArray( testArray );
+    document.sort.b1.value="Sort Array";
+    next = "sort";
+  }
+  else
+  {
+    sortArray( testArray );
+    document.sort.b1.value="Start Over -- Show a new random array";
+    next = "fill";
+  }
+  document.getElementById( "out" ).innerHTML = output;
+  return true;
+}
+
+function showArray( arr, start )
+{
+  output += "<br>";
+  for ( var j = 0; j < start; j++ )
+    output += "&nbsp;&nbsp;&nbsp;&nbsp;";
+  for ( var i = start; i < arr.length; i++ )
+    output += "&nbsp;&nbsp;" + arr[i];
+}
+
+function fillArray( a )
+{
+  output = "";
+  for ( var i = 0; i < 8; i++ )
+    a[i] = ( Math.floor(90 * Math.random()) + 10 );
+  output += "SELECTION SORT: Sort the following array in " + order.toUpperCase() 
+			+ " order.  Click the button again to see a solution.<p><tt><big>"
+  showArray( a, 0 );
+  output += "</big></tt>";
+}
+
+function swap( arr, j, k )
+{
+  var temp = arr[j];
+  arr[j] = arr[k];
+  arr[k] = temp;
+}
+
+function sortArray( a ) // Selection Sort Algorithm
+{
+  output += "<tt><big>";
+  for ( var pass = 0; pass < a.length-1; pass++ )
+  {
+    var ixSmallestLargest = pass;
+    for ( var ix = pass+1; ix < a.length; ix++ )
+      if ( ascending && a[ix] < a[ixSmallestLargest] 
+	       || !ascending && a[ix] > a[ixSmallestLargest] )
+        ixSmallestLargest = ix;
+    swap( a, pass, ixSmallestLargest );
+    showArray( a, pass );
+  }
+  output += "</big></tt>";
+}
+
+</script>
+
+
+
+</body></html>

@@ -1,0 +1,8 @@
+Here's how to use a string variable as an accumulator to complete Part 6. First, be sure 
+to inititalze the accumulator before the loop to an empty string (two quote marks with 
+nothing between them, not even a space).  Then, instead of printing each character one at 
+a time, add each character to the accumulator. When you reach the end of a word, print 
+out the word (or a substitute), and then reset the accumulator to an empty string.  (In 
+other situations, you may choose to add a newline character ('\n') to the accumulator to 
+go to a new line, and then just print out the string accumulator's value one time after 
+the loop is finished.)

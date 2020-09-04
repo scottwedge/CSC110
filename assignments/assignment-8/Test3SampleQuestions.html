@@ -1,0 +1,613 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>CSC 110 Test #3 Sample Questions</title>
+</head>
+
+<body>
+
+<a href="javascript: history.go(-1)">Back</a>
+<h2>CSC 110 Test #3 Sample Questions</h2>
+<p><font color="#800080"><u><b>Coverage:</b></u></font></p>
+<p>The coverage for Test #3 focuses on everything we have done since Test #2, 
+especially working with files and manipulating lists. Expect to see nested loops, which did not appear 
+on Test #2. Also expect to be asked to write code that involves problem-solving 
+with loops. Review the assigned CodingBat problems to prepare for the &quot;write 
+some code&quot; section of the test.</p>
+<p><font color="#800080"><u><b>Types of Questions:</b></u></font></p>
+<p>You may see any of the following 5 different types of questions on the test:</p>
+<ol>
+	<li>&quot;Evaluate the Expression&quot; -- determine the value and data type of each 
+	expression shown. </li>
+	<li>&quot;Show the Output Produced&quot; -- given a block of Python code, show what 
+	will be displayed the code is executed.</li>
+	<li>&quot;Write Some Code&quot; -- given a description of the problem to be solved or 
+	the actions to be performed, write some Python code to accomplish the tasks.</li>
+	<li>&quot;Trace the Variables&quot; -- given a program listing including decision, 
+	repetition structures and/or function definitions, and with lines numbered, 
+	trace the operation of the program and show the actual sequence in which 
+	lines are executed and the values of the variables as they change. </li>
+	<li>&quot;Miscellaneous Questions&quot; -- multiple choice, true and false, and/or 
+	short answer questions focused on the chapter objectives (similar to quiz 
+	questions).</li>
+</ol>
+<p><b><u><font color="#800080">Sample Questions:</font></u></b> Here are a few 
+sample questions -- this is not an actual test.</p>
+<p><font color="#800080"><b>&quot;Evaluate the Expression&quot;:</b></font> Show the
+<span style="font-weight: bold; text-decoration: underline;">value</span> and
+<span style="font-weight: bold; text-decoration: underline;">data type</span> of 
+each expression, <span style="font-weight: bold;">OR</span>, if the expression 
+will cause an error message,
+<span style="font-weight: bold; text-decoration: underline;">say what the error 
+is</span>. Assume the following variable assignments have been made:</p>
+a = 3<br>
+b = 9<br>
+arr1 = [12, 5, 18, 9]<br>
+arr2 = ['what', 'IS', 'test']<br>
+s1 = 'FridayFreedom'<br>
+s2 = 'what time is it'<br>
+s3 = '3Kings'<br>
+&nbsp;
+  <table width="700" border="1">
+	<tr>
+		<td valign="top" width="33%">arr1[1]</td>
+		<td valign="top" width="33%">arr2[0]</td>
+		<td valign="top" width="33%">str(arr1[1])</td>
+	</tr>
+	<tr>
+		<td valign="top" width="33%">len(arr2)</td>
+		<td valign="top" width="33%">len(arr2[2])</td>
+		<td valign="top" >arr2[len(arr2)]</td>
+	</tr>
+	<tr>
+		<td valign="top" width="33%">len(arr1)</td>
+		<td valign="top" width="33%">len(arr1[2])</td>
+		<td valign="top" >len(s1)</td>
+	</tr>
+	<tr>
+		<td valign="top" width="33%">arr1[a] + a</td>
+		<td valign="top" width="33%">arr1[b] + b</td>
+		<td valign="top" >arr2[0] + arr2[2]</td>
+	</tr>
+  </table><br>
+  <table width="700" border="1">
+	<tr>
+		<td valign="top" width="33%">arr1[a] - 1</td>
+		<td valign="top" width="33%">arr1[a - 1]</td>
+		<td valign="top" width="33%">arr2[1].isupper()</td>
+	</tr>
+	<tr>
+		<td valign="top" width="33%">arr1[1:3]</td>
+		<td valign="top" width="33%">arr1[1.3]</td>
+		<td valign="top" width="33%">arr2[2] + str(arr1[1])</td>
+	</tr>
+	<tr>
+		<td valign="top" width="33%">arr1[:2]</td>
+		<td valign="top" width="33%">arr2[:2]</td>
+		<td valign="top" width="33%">arr2[2:]</td>
+	</tr>
+	<tr>
+		<td valign="top" width="33%">arr1[2:3]</td>
+		<td valign="top" width="33%">arr1[2:4]</td>
+		<td valign="top" width="33%">arr1[2:25]</td>
+	</tr>
+  </table><br>
+  <table width="700" border="1">
+	<tr>
+		<td valign="top" width="33%">s1.isalpha()</td>
+		<td valign="top" width="33%">s2.isalpha()
+      	</td>
+		<td valign="top" width="33%">s3.isalpha()
+      	</td>
+	</tr>
+	<tr>
+		<td valign="top" width="33%">s1.isalnum()
+      	</td>
+		<td valign="top" width="33%">s2.isalnum()
+      	</td>
+		<td valign="top" width="33%">s3.isalnum()
+      	</td>
+	</tr>
+	<tr>
+		<td valign="top" width="33%">s1.isdigit()
+      	</td>
+		<td valign="top" width="33%">s2.isdigit()
+      	</td>
+		<td valign="top" width="33%">s3.isdigit()
+      	</td>
+	</tr>
+  </table><br>
+  <table width="700" border="1">
+	<tr>
+		<td valign="top" width="33%">s1.islower()
+      	</td>
+		<td valign="top" width="33%">s2.islower()
+      	</td>
+		<td valign="top" width="33%">s3.isupper()
+      	</td>
+	</tr>
+	<tr>
+		<td valign="top" width="33%">s1.lower()
+      	</td>
+		<td valign="top" width="33%">s1[:6] + s2[4:9]
+      	</td>
+		<td valign="top" width="33%">s3.upper()
+      	</td>
+	</tr>
+	<tr>
+		<td valign="top" width="33%">s1.strip()
+      	</td>
+		<td valign="top" width="33%">s1.strip('F')
+      	</td>
+		<td valign="top" width="33%">s1.rstrip('F')
+      	</td>
+	</tr>
+  </table><br>
+  <table width="700" border="1">
+	<tr>
+		<td valign="top" width="33%">s1[b]</td>
+		<td valign="top" width="33%">s2[b]</td>
+		<td valign="top" width="33%">s3[b]</td>
+	</tr>
+	<tr>
+		<td valign="top" width="33%">s1[a:b]</td>
+		<td valign="top" width="33%">s1[b:a]</td>
+		<td valign="top" width="33%">s1[a:]</td>
+	</tr>
+	<tr>
+		<td valign="top" width="33%">s1[:a]</td>
+		<td valign="top" width="33%">s2[len(s2)-1]</td>
+		<td valign="top" width="33%">s2[-1]</td>
+	</tr>
+  </table><br>
+  <table width="700" border="1">
+	<tr>
+		<td valign="top" width="33%">s2[len(s2)]</td>
+		<td valign="top" width="33%">s3[0:1]</td>
+		<td valign="top" width="33%">int(s3[0:1])</td>
+	</tr>
+	<tr>
+		<td valign="top" width="33%">s1 + s2</td>
+		<td valign="top" width="33%">a + b</td>
+		<td valign="top" width="33%">a + s3</td>
+	</tr>
+	<tr>
+		<td valign="top" width="33%">str(a) + s3</td>
+		<td valign="top" width="33%">str(a + s3)</td>
+		<td valign="top" width="33%">s1[a] + s1[b]</td>
+	</tr>
+	<tr>
+		<td valign="top" width="33%">str(a) + str(b)</td>
+		<td valign="top" width="33%">str(a + b)</td>
+		<td valign="top" width="33%">s1[a + b]</td>
+	</tr>
+</table>
+<br>
+<font color="#800080"><b>&quot;Show the Output Produced&quot;:</b></font> Show what 
+will appear <b><u>in the Python shell window</u></b> when 
+each of the following blocks of Python code is executed. Assume that the code 
+shown in each block is the entire program, and assume there are no errors in the 
+program.<br>
+&nbsp; 
+<table width="700" border="1">
+	<tr>
+		<th width="50%">Python Code
+    	</th>
+		<th width="50%">Output Produced
+    	</th>
+	</tr>
+	<tr>
+		<td nowrap="nowrap" width="50%"><br>
+		<b>distance = [4.5, 7.1, 8.9, 3.2]<br>
+		sum = 0<br>
+		for i in distance:</b><div style="margin-left: 40px;">
+			<b>sum = sum + i</b></div>
+		<b>print(sum)<br>
+		<br>
+&nbsp;</b></td>
+		<td width="50%"><br>
+&nbsp;</td>
+	</tr>
+	<tr>
+		<td nowrap="nowrap" width="50%"><b><br>
+		distance = [4.5, 7.1, 8.9, 3.2]<br>
+		sum = 0<br>
+		for i in range(0, len(distance)):</b><div style="margin-left: 40px;">
+			<b>sum = sum + i</b></div>
+		<b>print(sum)<br>
+		<br>
+&nbsp;</b></td>
+		<td width="50%"><br>
+&nbsp;</td>
+	</tr>
+	<tr>
+		<td nowrap="nowrap" width="50%"><b><br>
+		distance = [4.5, 7.1, 8.9, 3.2]<br>
+		sum = 0<br>
+		for i in range(0, len(distance)):</b><div style="margin-left: 40px;">
+			<b>sum = sum + distance[i]</b></div>
+		<b>print(sum)<br>
+		<br>
+&nbsp;</b></td>
+		<td width="50%"><br>
+&nbsp;</td>
+	</tr>
+	</table>
+<table width="700" border="1">
+	<tr>
+		<th width="50%">Python Code
+    	</th>
+		<th width="50%">Output Produced
+    	</th>
+	</tr>
+	<tr>
+		<td nowrap="nowrap" width="50%"><b><br>
+		distance = [4.5, 7.1, 8.9, 3.2]<br>
+		sum = 0<br>
+		for i in range(1, len(distance)):</b><div style="margin-left: 40px;">
+			<b>sum = sum + distance[i]</b></div>
+		<b>print(sum)<br>
+		<br>
+&nbsp;</b></td>
+		<td width="50%"><br>
+&nbsp;</td>
+	</tr>
+	<tr>
+		<td style="vertical-align: top;"><br style="font-weight: bold;">
+		<span style="font-weight: bold;">distance = [4.5, 7.1, 8.9, 3.2]</span><br style="font-weight: bold;">
+		<span style="font-weight: bold;">sum = 0</span><br style="font-weight: bold;">
+		<span style="font-weight: bold;">for i in range(1, len(distance)):</span><div style="margin-left: 40px; font-weight: bold;">
+			sum = sum + distance[i]<br>
+			print(sum)<p>&nbsp;</div></td>
+		<td style="vertical-align: top;"><br>
+&nbsp;</td>
+	</tr>
+	<tr>
+		<td style="vertical-align: top;"><br style="font-weight: bold;">
+		<span style="font-weight: bold;">price = [25, 10, 15, 20]</span><br style="font-weight: bold;">
+		<span style="font-weight: bold;">for i in range(len(price)):</span><div style="margin-left: 40px; font-weight: bold;">
+			price[i] = price[i] * 1.1</div>
+		<span style="font-weight: bold;">for i in range(len(price)):</span><div style="margin-left: 40px; font-weight: bold;">
+			print(price[i])<br>
+&nbsp;</div>
+		&nbsp;</td>
+		<td style="vertical-align: top;"><br>
+&nbsp;</td>
+	</tr>
+</table>
+<table width="700" border="1">
+	<tr>
+		<th width="50%">Python Code
+    	</th>
+		<th width="50%">Output Produced
+    	</th>
+	</tr>
+	<tr>
+		<td style="vertical-align: top;"><span style="font-weight: bold;"><br>
+		source = 'ABCDEFGHIJKLMNOP'<br>
+		result = ''</span> # (that is an empty string)<br style="font-weight: bold;">
+		<span style="font-weight: bold;">for i in range(2,15,3):</span><div style="margin-left: 40px;">
+			<span style="font-weight: bold;">result += source[i]</span><br style="font-weight: bold;">
+			<span style="font-weight: bold;">print(result)</span><br>
+			<br style="font-weight: bold;">
+&nbsp;</div>
+		</td>
+		<td style="vertical-align: top;"><br>
+&nbsp;</td>
+	</tr>
+	<tr>
+		<td style="vertical-align: top;"><span style="font-weight: bold;"><br>
+		source = 'ABCDEFGHIJKLMNOP'<br>
+		result = ''</span> # (that is an empty string)<br style="font-weight: bold;">
+		<span style="font-weight: bold;">for i in range(3,15,2):</span><div style="margin-left: 40px;">
+			<span style="font-weight: bold;">result += source[i]</span></div>
+		<span style="font-weight: bold;">print(result)<br>
+		<br>
+&nbsp;</span></td>
+		<td style="vertical-align: top;"><br>
+&nbsp;</td>
+	</tr>
+	<tr>
+		<td style="vertical-align: top;"><span style="font-weight: bold;"><br>
+		source = 'ABCDEFGHIJKLMNOP'</span><br style="font-weight: bold;">
+		<span style="font-weight: bold;">for i in range(1,15,5):</span><div style="margin-left: 40px;">
+			<span style="font-weight: bold;">for k in range(i+1,15,4):</span></div>
+		<div style="margin-left: 80px;">
+			<span style="font-weight: bold;">print(source[i:k])</span><br style="font-weight: bold;">
+&nbsp;</div>
+		<span style="font-weight: bold;"><br>
+&nbsp;</span></td>
+		<td style="vertical-align: top;"><br>
+&nbsp;</td>
+	</tr>
+	</table>
+<p><b><font color="#800080">&quot;Write Some Code&quot;:</font></b> Write a Python program 
+to produce the requested results. </p>
+<ol>
+	<li>Write a program that reads a series of numbers from a file named 'profits.txt' 
+	and prints the highest, lowest and average value. The numbers are not 
+	necessarily integers. The program should not crash if the file is empty -- 
+	just show an appropriate message.<br>
+&nbsp;</li>
+	<li>Write a program that writes out to a file the squares of the numbers 
+	from 10 to 20 (100, 121, 144, ..., 400), one number per line. 
+	<br>
+&nbsp;</li>
+	<li>Write a function named 'reverse()' that takes one string parameter and 
+	returns a new string that has all the characters in the original string in 
+	reverse order. reverse('one two') --&gt; 'owt eno' -- reverse('a') --&gt; 'a' -- 
+	reverse('') --&gt; '' You must us a loop to solve this problem; you may not use 
+	a 'slice' or the string object's 'reverse()' method.
+	<br>
+&nbsp;</li>
+	<li>Write a function named 'merge()' that takes two string values as 
+	parameters and returns a new string value that &quot;interleaves&quot; the characters 
+	in the original strings. Here are some examples of the output produced:
+    <ul>
+		<li>merge('one', 'two') --&gt; '<span style="font-weight: bold;">o</span>t<span style="font-weight: bold;">n</span>w<span style="font-weight: bold;">e</span>o'</li>
+		<li>merge('one', 'fourteen') --&gt; '<span style="font-weight: bold;">o</span>f<span style="font-weight: bold;">n</span>o<span style="font-weight: bold;">e</span>urteen'</li>
+		<li>merge('fourteen', 'one') --&gt; '<span style="font-weight: bold;">f</span>o<span style="font-weight: bold;">o</span>n<span style="font-weight: bold;">u</span>e<span style="font-weight: bold;">rteen</span>'</li>
+		<li>merge('one', '') --&gt; 'one' # note: second parameter is an empty 
+		string</li>
+		<li>merge('', 'one') --&gt; 'one' # note: first parameter is an empty 
+		string&nbsp; </li>
+	</ul>
+	</li>
+</ol>
+
+Note: The CodingBat exercises are also good examples to review.<br>
+&nbsp;<p><b><font color="#800080">Use the following code for the next exercise:</font></b>
+</p>
+<table width="700" border="1" cellpadding="4">
+	<tr>
+		<td valign="top" width="100" align="right">Line #:<br>
+		<br>
+		<b>1<br>
+		2<br>
+		3<br>
+		4<br>
+		5<br>
+		6<br>
+		7<br>
+		8 <br>
+		9<br>
+		10<br>
+		11<br>
+		<br>
+&nbsp;</b></td>
+		<td valign="top" width="600">Program Code:<br>
+		<br>
+		<b>nums = [3, 5, 4]<br>
+		for index in range(len(nums)):</b><div style="margin-left: 40px;">
+			<b>nums[index] = nums[index] + 1</b></div>
+		<b>sum = 0<br>
+		for index in range(len(nums)):</b><div style="margin-left: 40px;">
+			<b>sum = sum + nums[index]</b></div>
+		<b>highest = 0<br>
+		for index in range(len(nums)):</b><div style="margin-left: 40px;">
+			<b>if nums[index] &gt; nums[highest]:</b><div style="margin-left: 40px;">
+				<b>highest = index</b></div>
+		</div>
+		<b>print('Highest =', nums[highest])<br>
+&nbsp;</b></td>
+	</tr>
+</table>
+<p><b><font color="#800080">&quot;Trace the Variables&quot;:</font></b> Fill in the table 
+below with a complete trace of the operation of the program provided above. Show 
+each line number executed and the value of each variable every time it is 
+changed. (Hint: Show a line number every time a line is executed, but fill in a 
+variable value only when it is changed.) Add lines to the end of the table as 
+needed!! </p>
+<table width="539" border="1">
+	<tr>
+		<th>Line Number
+    	</th>
+		<th>index
+    	</th>
+		<th>sum
+    	</th>
+		<th>highest
+    	</th>
+		<th>nums[0]
+    	</th>
+		<th>nums[1]
+    	</th>
+		<th>nums[2]
+    	</th>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+</table>
+
+</body>
+
+</html>

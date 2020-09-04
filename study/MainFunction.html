@@ -1,0 +1,65 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Important Note About Program Structure</title>
+</head>
+
+<body>
+
+<a href="javascript: history.go(-1)">Back</a>
+<p style="text-align: center" align="center"><span style="font-size: 14pt"><b>
+Important Note About Program Structure</b></span></p>
+<p>Up until now we have used a pretty basic structure for our programs: input 
+--&gt; processing --&gt; output.&nbsp; You can see this structure very clearly in the 
+&quot;Boxes&quot; sample program, and hopefully you have employed it in Assignment #2.&nbsp; 
+This pattern will continue to be valuable to us in the future.&nbsp; However, 
+now that we will be using programmer-defined functions, it will be useful to 
+impose another layer of organization on our programs.&nbsp; Please follow the 
+structure defined here in all programs that make use of programmer-defined 
+functions.</p>
+<ul>
+	<li>The function definitions in your program should be listed one after 
+	another in sequence.&nbsp; Do not place one function definition inside of 
+	another.&nbsp; If you follow all the recommendations listed here, you may 
+	place your function definitions in any order, except that the 'main' 
+	function should be listed either first or last.&nbsp; Choose an order for 
+	your function definitions that makes sense to you and helps a reader 
+	understand the program.</li>
+	<li>Each function definition should be preceded by a comment block that 
+	describes what the function does and provides information about any required 
+	parameters.</li>
+	<li>In general, no global variables should be used in your programs unless 
+	specifically authorized in an assignment.&nbsp; This is just good 
+	programming practice.&nbsp; There will be occasional appropriate exceptions 
+	to this rule, as you will see in the GuiTest3.py code.</li>
+	<li>Global constants may be used if appropriate.&nbsp; The names of global 
+	constants should be shown in all upper-case letters with underscores between 
+	words, like this: CONTRIBUTION_RATE.</li>
+	<li>The names of functions and local variables should follow one of two 
+	patterns: all lower case (e.g. calculate_tip, total_to_pay) or &quot;camel case&quot; 
+	(e.g. calculateTip, totalToPay).&nbsp; Notice that variable and function 
+	names always should begin with a lower-case letter.</li>
+	<li>Always use a function named 'main' as the entry point for your program.&nbsp; 
+	As stated above, the 'main' function should be either the first or the last 
+	function defined.</li>
+	<li>The last statement in the program, and in general the only statement 
+	that is not contained inside a function definition, should call the 'main' 
+	function:<br>
+&nbsp;<br>
+	main()</li>
+</ul>
+<p>Following these rules will help you avoid confusing errors.&nbsp; Because 
+Python is an interpreted programming language, it must read a function 
+definition before it can process a call to that function.&nbsp; This rule could 
+force you to place the function definitions is a specific order.&nbsp; However, 
+if the call to 'main' is the only statement outside of a function definition, 
+and if you place that call as the last line of your program, you can list your 
+function definitions in any order.</p>
+<p>Sample program 5.15 on page 238 in the text (page 194 in the Third Edition) demonstrates the use of the 
+guidelines listed above.</p>
+
+</body>
+
+</html>
